@@ -32,6 +32,7 @@ export const profile = {
 export const experience = [
   {
     "company": "GlobiFYE",
+    "companyUrl": "https://www.linkedin.com/company/globifye/posts/",
     "descriptor": "B2B Business Services Outsourcing",
     "role": "AI Engineer Intern",
     "dates": "May 2026 – Sep 2026",
