@@ -1,48 +1,20 @@
 <script setup>
-import { computed } from 'vue'
 import { skills } from '../data/resume.js'
-
-// Flatten every row into lines of chips carrying a running index, so the
-// entrance cascade runs continuously down the whole panel rather than
-// restarting per row. Delay is capped so the tail doesn't drag.
-const STEP = 22
-const MAX_DELAY = 900
-
-const rows = computed(() => {
-  let n = 0
-  return skills.map((group) => ({
-    category: group.category,
-    lines: (group.groups ?? [{ items: group.items }]).map((line) => ({
-      items: line.items.map((label) => ({
-        label,
-        delay: `${Math.min(n++ * STEP, MAX_DELAY)}ms`,
-      })),
-    })),
-  }))
-})
 </script>
 
 <template>
-  <section id="skills" class="section">
+  <section id="skills" class="section toolbox" aria-labelledby="toolbox-title">
     <div class="section-inner">
-      <h2 class="section-title" v-reveal>The toolbox.</h2>
-
-      <div class="skills-panel" v-reveal>
-        <div v-for="row in rows" :key="row.category" class="skill-row">
-          <h3 class="skill-category">{{ row.category }}</h3>
-
-          <!-- a row is one line of chips, or several -->
-          <div class="skill-lines">
-            <div v-for="(line, i) in row.lines" :key="i" class="skill-items">
-              <span
-                v-for="chip in line.items"
-                :key="chip.label"
-                class="skill-chip"
-                :style="{ transitionDelay: chip.delay }"
-                >{{ chip.label }}</span
-              >
-            </div>
-          </div>
+      <div class="toolbox-heading" v-reveal>
+        <div><p class="section-kicker">03 / SKILLS & TOOLS</p><h2 id="toolbox-title">The toolbox.</h2></div>
+        <p class="toolbox-note">The tools behind the work.</p>
+      </div>
+      <div class="toolbox-panel" v-reveal>
+        <div v-for="(group, i) in skills" :key="group.category" class="toolbox-group">
+          <h3><span class="toolbox-index" aria-hidden="true">0{{ i + 1 }}</span>{{ group.category }}</h3>
+          <ul class="toolbox-items" role="list">
+            <li v-for="item in group.items" :key="item">{{ item }}</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -50,88 +22,27 @@ const rows = computed(() => {
 </template>
 
 <style scoped>
-.skills-panel {
-  background: var(--bg-alt);
-  border-radius: var(--r-block);
-  padding: 12px 44px;
-}
-
-.skill-row {
-  display: grid;
-  grid-template-columns: 230px 1fr;
-  gap: 28px;
-  align-items: baseline;
-  padding: 30px 0;
-  border-bottom: 1px solid var(--grey-line);
-}
-
-.skill-row:last-child {
-  border-bottom: none;
-}
-
-.skill-category {
-  font-size: 17px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-}
-
-.skill-items {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-/* rows broken into separate lines of chips */
-.skill-lines {
-  display: grid;
-  gap: 10px;
-}
-
-/* inverted chips — soft-ink fill, ground-coloured text, so they read as solid
-   tokens rather than outlines; flips automatically in dark mode. No hover
-   state: they are labels, not controls. */
-.skill-chip {
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  color: var(--bg);
-  background: var(--chip-ink);
-  border-radius: var(--r-pill);
-  padding: 9px 17px;
-
-  /* entrance cascade: each chip carries its own delay, released when the
-     panel scrolls into view (v-reveal adds .is-visible) */
-  opacity: 0;
-  transform: translateY(10px) scale(0.96);
-  transition:
-    opacity 0.45s var(--ease-out),
-    transform 0.45s var(--ease-out);
-}
-
-.skills-panel.is-visible .skill-chip {
-  opacity: 1;
-  transform: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .skill-chip {
-    opacity: 1;
-    transform: none;
-    transition: none;
-    transition-delay: 0ms !important;
-  }
-}
-
-@media (max-width: 734px) {
-  .skills-panel {
-    padding: 6px 22px;
-    border-radius: var(--r-card);
-  }
-
-  .skill-row {
-    grid-template-columns: 1fr;
-    gap: 14px;
-    padding: 24px 0;
-  }
+.toolbox { padding-top: 65px; padding-bottom: 65px; }
+.toolbox-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; margin-bottom: 26px; }
+.toolbox-heading h2 { font-size: calc(clamp(36px, 4.5vw, 56px) * var(--type-scale)); letter-spacing: -.055em; line-height: 1.05; font-weight: 750; margin-top: 12px; }
+.toolbox-note { color: var(--text-secondary); font-size: calc(13px * var(--type-scale)); margin-bottom: 4px; }
+.toolbox-panel { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border: 0; border-radius: 16px; background: var(--surface); overflow: hidden; }
+.toolbox-group { padding: 25px 28px; }
+.toolbox-group:nth-child(odd) { border: 0; }
+.toolbox-group:nth-child(n + 3) { border: 0; }
+.toolbox-group h3 { display: flex; align-items: baseline; gap: 12px; margin-bottom: 13px; font-size: calc(13px * var(--type-scale)); font-weight: 700; letter-spacing: .015em; }
+.toolbox-index { color: var(--text-tertiary); font-size: calc(9px * var(--type-scale)); font-weight: 400; letter-spacing: .05em; }
+.toolbox-items { display: flex; flex-wrap: wrap; list-style: none; padding: 0; gap: 5px 0; }
+.toolbox-items li { display: inline; color: var(--text-secondary); font-size: calc(14px * var(--type-scale)); line-height: 1.65; letter-spacing: 0; }
+.toolbox-items li:not(:last-child)::after { content: '·'; display: inline-block; color: var(--accent); margin: 0 9px; }
+@media(max-width:734px) {
+  .toolbox { padding-top: 45px; padding-bottom: 45px; }
+  .toolbox-heading { align-items: start; }
+  .toolbox-note { max-width: 110px; margin-top: 25px; font-size: calc(12px * var(--type-scale)); }
+  .toolbox-panel { grid-template-columns: 1fr; }
+  .toolbox-group { padding: 20px; }
+  .toolbox-group:nth-child(odd) { border: 0; }
+  .toolbox-group + .toolbox-group { border: 0; }
+  .toolbox-items li { font-size: calc(14px * var(--type-scale)); }
 }
 </style>

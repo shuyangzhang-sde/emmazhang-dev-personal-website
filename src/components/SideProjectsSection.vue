@@ -1,33 +1,30 @@
 <script setup>
+import ProjectGallery from './ProjectGallery.vue'
+import ResumeText from './ResumeText.vue'
 import { sideProjects } from '../data/resume.js'
 </script>
 
 <template>
   <section id="projects" class="section">
     <div class="section-inner">
-      <h2 class="section-title" v-reveal>Things I build after hours.</h2>
+      <div class="projects-divider" v-reveal><p class="section-kicker">02 / SELECTED PROJECTS</p><h2><span>Selected projects,</span> ideas<br class="desktop-break" /> brought to life.</h2><p>From a useful idea to something you can actually use.</p><a class="btn-ink" href="#project-list">Explore projects <span aria-hidden="true">↘</span></a></div>
 
-      <div class="project-grid">
-        <component
-          :is="project.links.length ? 'a' : 'article'"
+      <div id="project-list" class="project-grid">
+        <article
           v-for="(project, i) in sideProjects"
           :key="project.name"
           class="project-card"
-          :class="{ 'project-card--linked': project.links.length }"
-          :href="project.links[0]?.url"
-          :target="project.links.length ? '_blank' : undefined"
-          :rel="project.links.length ? 'noopener' : undefined"
           v-reveal="{ delay: i * 80 }"
         >
-          <div class="project-header">
+          <ProjectGallery v-if="project.images?.length" :images="project.images" :name="project.name" />
+          <div v-else class="project-visual" :class="`project-visual--${i}`" aria-hidden="true"><span class="project-visual-index">PROJECT / 0{{ i + 1 }}</span><span class="project-visual-title">{{ project.visualTitle }}</span><span class="project-visual-caption">{{ project.visualCaption }}</span></div><div class="project-header">
             <h3 class="project-name">
               {{ project.name }}
-              <span v-if="project.links.length" class="project-link-arrow" aria-hidden="true">↗</span>
             </h3>
-            <span class="chip chip--mint project-status">{{ project.status }}</span>
+            <span v-if="project.status" class="chip chip--mint project-status">{{ project.status }}</span>
           </div>
           <p class="project-descriptor">
-            {{ project.descriptor }} · {{ project.dates }}
+            {{ project.descriptor }}<template v-if="project.dates"> · {{ project.dates }}</template>
             <span v-if="project.stars != null" class="repo-stats">
               <span class="repo-stat" title="GitHub stars">
                 <svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true">
@@ -44,22 +41,50 @@ import { sideProjects } from '../data/resume.js'
             </span>
           </p>
 
-          <p class="project-description">{{ project.description }}</p>
+          <div v-if="project.links.length" class="project-actions">
+            <a v-for="link in project.links" :key="link.url" :href="link.url" target="_blank" rel="noopener noreferrer" :class="{ 'project-action--live': link.label === 'Live' }" :aria-label="`${project.name} — ${link.label}`">{{ link.label === 'Live' ? 'Live site' : link.label }} <span aria-hidden="true">↗</span></a>
+          </div>
+          <p class="project-description"><ResumeText :text="project.description" /></p>
+          <ul v-if="project.bullets?.length" class="project-bullets">
+            <li v-for="bullet in project.bullets" :key="bullet"><ResumeText :text="bullet" /></li>
+          </ul>
 
           <div class="project-stack">
             <span v-for="tech in project.stack" :key="tech" class="chip chip--mint">{{ tech }}</span>
           </div>
-        </component>
+        </article>
       </div>
     </div>
   </section>
 </template>
 
 <style scoped>
+.project-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 18px; }
+.project-actions a { display: inline-flex; gap: 20px; align-items: center; border: 0; border-radius: 24px; padding: 8px 16px; font-size: calc(12px * var(--type-scale)); font-weight: 600; color: var(--text); background: #fff; }
+.project-actions a:hover { text-decoration: none; background: #e4e7fc; color: var(--accent-ink); }
+.project-actions .project-action--live { background: var(--primary); border: 0; color: #fff; }
+.project-actions .project-action--live:hover { background: var(--accent-ink); color: #fff; }
+
+.project-bullets { padding-left: 18px; margin-top: 16px; color: var(--text-secondary); font-size: calc(15px * var(--type-scale)); line-height: 1.7; }
+.project-bullets li + li { margin-top: 12px; }
+.project-visual.project-visual--2 { background: var(--surface); }
+
+.projects-divider { text-align: center; padding: 32px 0 64px; }
+.projects-divider h2 { font-size: calc(clamp(34px, 5.5vw, 74px) * var(--type-scale)); line-height: 1.1; letter-spacing: -.045em; margin: 30px 0 24px; font-weight: 750; }
+.projects-divider h2 span { color: #737985; }
+.projects-divider > p:not(.section-kicker) { color: var(--text-secondary); font-size: calc(15px * var(--type-scale)); }
+.projects-divider .btn-ink { margin-top: 28px; }
+.projects-divider .btn-ink span { margin-left: 28px; }
+.project-visual { aspect-ratio: 2 / 1; min-height: 0; border-radius: 12px; background: var(--surface); margin: 0 0 24px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
+.project-visual--1 { background: #252526; color: #fff; }
+.project-visual-index, .project-visual-caption { font-size: calc(9px * var(--type-scale)); letter-spacing: .12em; }
+.project-visual-title { max-width: 270px; font-size: calc(clamp(24px, 2.1vw, 36px) * var(--type-scale)); font-weight: 750; line-height: 1; letter-spacing: -.055em; padding: 12px 0; }
+.project-visual-arrow { position: absolute; bottom: 20px; right: 24px; font-size: calc(30px * var(--type-scale)); }
+
 .project-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 28px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(20px, 1.6vw, 32px);
 }
 
 .project-card {
@@ -67,7 +92,7 @@ import { sideProjects } from '../data/resume.js'
   display: flex;
   flex-direction: column;
   background: var(--card-bg);
-  border: 1px solid var(--ink-border);
+  border: 0;
   border-radius: var(--r-card);
   box-shadow: var(--shadow-card);
   padding: 28px 32px 30px;
@@ -75,59 +100,12 @@ import { sideProjects } from '../data/resume.js'
   text-decoration: none;
   transition:
     transform 0.25s var(--ease-out),
-    box-shadow 0.25s var(--ease-out),
-    border-color 0.25s var(--ease-out);
+    box-shadow 0.25s var(--ease-out);
 }
 
 .project-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-lift);
-}
-
-/* Linked cards signal "clickable" with a mint accent bar that slides
-   in on the left edge, plus a border/text tint — the card stays on
-   its normal light/dark ground, unlike the plain lift used on
-   non-clickable cards (e.g. experience). */
-.project-card--linked {
-  cursor: pointer;
-}
-
-.project-card--linked::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 20px;
-  bottom: 20px;
-  width: 4px;
-  border-radius: 0 3px 3px 0;
-  background: var(--link);
-  transform: scaleY(0);
-  transform-origin: center;
-  transition: transform 0.25s var(--ease-out);
-}
-
-.project-card--linked:hover {
-  border-color: var(--link);
-}
-
-.project-card--linked:hover::before {
-  transform: scaleY(1);
-}
-
-.project-card--linked:hover .project-name,
-.project-card--linked:hover .project-link-arrow {
-  color: var(--link);
-}
-
-.project-link-arrow {
-  display: inline-block;
-  color: var(--link);
-  font-weight: 600;
-  transition: transform 0.2s var(--ease-out);
-}
-
-.project-card--linked:hover .project-link-arrow {
-  transform: translate(2px, -2px);
 }
 
 .project-header {
@@ -138,7 +116,7 @@ import { sideProjects } from '../data/resume.js'
 }
 
 .project-name {
-  font-size: 24px;
+  font-size: calc(24px * var(--type-scale));
   font-weight: 700;
   letter-spacing: -0.01em;
   transition: color 0.25s var(--ease-out);
@@ -150,7 +128,7 @@ import { sideProjects } from '../data/resume.js'
 
 .project-descriptor {
   margin-top: 4px;
-  font-size: 14px;
+  font-size: calc(14px * var(--type-scale));
   color: var(--text-tertiary);
 }
 
@@ -174,9 +152,10 @@ import { sideProjects } from '../data/resume.js'
 
 .project-description {
   margin-top: 18px;
-  font-size: 16px;
+  font-size: calc(15px * var(--type-scale));
+  line-height: 1.7;
   color: var(--text-secondary);
-  flex-grow: 1;
+
 }
 
 .project-stack {
@@ -184,6 +163,10 @@ import { sideProjects } from '../data/resume.js'
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+}
+
+@media (max-width: 1100px) {
+  .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 734px) {

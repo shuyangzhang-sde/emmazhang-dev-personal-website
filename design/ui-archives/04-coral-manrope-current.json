@@ -1,0 +1,9 @@
+{
+  "name": "04-coral-manrope-current",
+  "created_at": "2026-11-01T14:20:37-06:00",
+  "source": "working-tree",
+  "base_commit": "c9f06ad7dbf6c14f17f3087afae6b9ae95c21b6c",
+  "includes_uncommitted_changes": true,
+  "file_count": 47,
+  "sha256": "f8a1d879ff1b3a254537b25ca41897f016c2285a48be7f77bdbca1e2aaf64ac9"
+}

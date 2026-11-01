@@ -15,8 +15,8 @@ const year = new Date().getFullYear()
 
 <style scoped>
 .footer {
-  border-top: 1px solid var(--hairline);
-  padding: 24px 22px;
+  border: 0;
+  padding: 24px var(--page-gutter);
 }
 
 .footer-inner {
@@ -26,7 +26,7 @@ const year = new Date().getFullYear()
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 8px;
-  font-size: 12px;
+  font-size: calc(12px * var(--type-scale));
   color: var(--text-tertiary);
 }
 </style>

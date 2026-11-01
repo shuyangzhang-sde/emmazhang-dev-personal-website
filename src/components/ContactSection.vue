@@ -32,7 +32,7 @@ import { profile } from '../data/resume.js'
 <style scoped>
 .contact-block {
   background: var(--brand);
-  border: 1px solid #000;
+  border: 0;
   border-radius: var(--r-block);
   padding: 96px 48px;
   text-align: center;
@@ -40,13 +40,13 @@ import { profile } from '../data/resume.js'
 }
 
 .contact-title {
-  font-size: clamp(36px, 6vw, 60px);
+  font-size: calc(clamp(36px, 6vw, 60px) * var(--type-scale));
   font-weight: 700;
   letter-spacing: -0.02em;
 }
 
 .contact-subtitle {
-  font-size: 19px;
+  font-size: calc(19px * var(--type-scale));
   margin-top: 14px;
   color: rgba(0, 0, 0, 0.65);
 }
@@ -56,7 +56,7 @@ import { profile } from '../data/resume.js'
 }
 
 .contact-block .btn-ink {
-  background: #000;
+  background: var(--primary);
   color: #fff;
 }
 
@@ -67,8 +67,11 @@ import { profile } from '../data/resume.js'
   gap: 28px;
 }
 
+.contact-links a span { color: var(--coral); }
+.contact-links a:hover { color: var(--accent-ink); }
+.contact-block .btn-ink:hover { background: var(--accent-ink); }
 .contact-links a {
-  font-size: 16px;
+  font-size: calc(16px * var(--type-scale));
   font-weight: 600;
   color: #000;
 }

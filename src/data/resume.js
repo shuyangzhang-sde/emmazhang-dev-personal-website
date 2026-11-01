@@ -1,3 +1,8 @@
+import analyticsOverview from '../assets/projects/analytics-overview.jpg'
+import analyticsActivity from '../assets/projects/analytics-activity.jpg'
+import illinirentHome from '../assets/projects/illinirent-home.jpg'
+import mailpilotOverview from '../assets/projects/mailpilot-overview.png'
+
 // All site content lives here — edit this file, not the components.
 
 export const profile = {
@@ -23,124 +28,213 @@ export const profile = {
   ],
 }
 
+// Experience and projects updated from EMMA_ZHANG_Resume_NG_Dec2026.docx.
 export const experience = [
   {
-    company: 'GlobiFYE',
-    descriptor: 'AI-powered business outsourcing',
-    role: 'AI Engineer Intern',
-    dates: 'May 2026 – Oct 2026',
-    location: 'Atlanta, GA · Remote',
-    bullets: [
-      "Designed and implemented an AI Sales Intelligence Platform for sales reps to analyze caller intent and deal signals across the full sales funnel using RAG, LangChain, Next.js, TypeScript, and PostgreSQL, orchestrating automated inbound/outbound routing to an AI voice agent or human rep, live transcription, and post-call semantic analysis for sales coaching",
-      "Developed a two-pass Automatic Speech Recognition: real-time streaming transcription for live captioning, followed by a batch re-transcription for improving accuracy, archiving transcripts and call audio to AWS S3",
-      "Architected a real-time phone-call voice agent that retrieved relevant data from company-specific RAG knowledge bases and caller history to identify the current sales funnel stage and generate context-aware responses",
-      "Built a post-call analysis pipeline using an LLM to refine speech-to-text transcripts and generate structured insights on key topics, customer hesitation, objections, and coaching opportunities, with OpenSearch for persistent storage",
-      "Instrumented MLOps observability via Prometheus, Grafana, and LangSmith to monitor LLM cost, latency and error rates.",
+    "company": "GlobiFYE",
+    "descriptor": "B2B Business Services Outsourcing",
+    "role": "AI Engineer Intern",
+    "dates": "May 2026 – Sep 2026",
+    "location": "Atlanta, GA · Remote",
+    "bullets": [
+      "Built a RAG-powered LiveKit voice sales agent handling 1,000+ calls/month, with AI-to-human handoff and post-call coaching insights for 20+ reps.",
+      "Cut voice latency by 40% to under 800ms by reworking LiveKit streaming, turn-taking, and call-state management across agent and human handoffs.",
+      "Designed a tool-calling orchestration layer that selects actions from customer intent, playbooks, and CRM data, resolving 65% of calls autonomously.",
+      "Engineered Haystack RAG pipeline indexing knowledge base documents and 500+ CRM records in Qdrant with Cohere embed-v4.0 for top-3 retrieval.",
+      "Reached 90% accuracy on 500+ sampled live-call answers by grounding replies in the knowledge base and capping tool loops at 3 calls before handoff.",
+      "Shipped 2x faster in Agile/Scrum sprints by delegating tasks to Claude Code and Codex sub-agents and validating generated code with automated tests."
     ],
-    stack: ['RAG', 'LangChain', 'Next.js', 'TypeScript', 'PostgreSQL', 'OpenSearch', 'AWS'],
+    "stack": [
+      "LiveKit",
+      "Haystack",
+      "RAG",
+      "Qdrant",
+      "Cohere embed-v4.0",
+      "Tool Calling",
+      "Claude Code",
+      "Codex"
+    ]
   },
   {
-    company: 'Tang Matcha House',
-    descriptor: 'Local business, full build',
-    role: 'Freelance Software Engineer',
-    dates: 'Dec 2025 – Jan 2026',
-    location: "Xi'an, China",
-    bullets: [
-      "Developed and deployed a React based Single Page Application (SPA) for a local matcha house that streamlined customers experience for order placement, tracking, and payment processing",
-      "Built RESTful APIs using API Gateway and AWS Lambda for order management, covering order creation, real-time tracking, history retrieval, and pick-up QR code generation, with DynamoDB as persistent storage",
-      "Utilized AWS CDK with TypeScript to construct service infrastructure via CloudFormation, implementing infrastructure as code and streamlining CI/CD pipelines via Docker, integrated API integration tests, accelerating rollout efficiency by 60%",
-      "Improved recent order query performance with Redis as cache layer, achieving a Redis cache hit rate of 60%, and reducing repeated MySQL queries by over 70%",
-      "Built automated test suite using TypeScript and Vitest, with unit tests for core business logic and Supertest-based integration tests covering authorization, payment, pickup verification, and security attack paths.",
+    "company": "Tang Matcha House",
+    "descriptor": "Matcha café ordering platform",
+    "role": "Freelance Software Engineer",
+    "dates": "Dec 2025 – Jan 2026",
+    "location": "Xi’an, China",
+    "bullets": [
+      "Built a React and TypeScript single-page app for a matcha café, managing cart, order lifecycle, and payment state with hooks for 1000+ orders/week.",
+      "Developed serverless RESTful APIs on API Gateway and Lambda with DynamoDB storage for order creation, tracking, history, and pickup QR codes.",
+      "Implemented real-time order status updates over WebSocket, replacing client polling with state changes pushed from the backend as orders progress.",
+      "Provisioned infra as code with AWS CDK in TypeScript on CloudFormation and automated deployments with CI/CD, accelerating rollouts by 60%.",
+      "Wrote Vitest unit tests for business logic and Supertest integration tests covering authorization, payment, pickup verification, and attack paths."
     ],
-    stack: ['React', 'TypeScript', 'AWS Lambda', 'DynamoDB', 'CDK', 'Redis', 'Vitest'],
+    "stack": [
+      "React",
+      "TypeScript",
+      "API Gateway",
+      "AWS Lambda",
+      "DynamoDB",
+      "WebSocket",
+      "AWS CDK",
+      "Vitest",
+      "Supertest"
+    ]
   },
   {
-    // One company, two consecutive roles — rendered as a single card with a
-    // rule between the roles. `roles` replaces the top-level role/bullets/
-    // stack; `dates` stays the overall span, which drives the timeline axis.
-    company: 'Chongqing Jingkai Trading',
-    descriptor: 'B2B cross-border commerce',
-    dates: 'May 2025 – Aug 2025',
-    location: 'Chongqing, China',
-    roles: [
-      {
-        role: 'Full-Stack Software Engineer Intern',
-        dates: 'Jul 2025 – Aug 2025',
-        bullets: [
-          "Designed and implemented a microservice-based platform for a crystal jewelry client using Spring Boot and Spring Cloud, enabling modular service registration, discovery, and inter-service communication via OpenFeign",
-          "Optimized high-concurrency scenarios for Prime Day by integrating Redis caching with LUA script for inventory control via Distributed Lock, reducing overselling and improving throughput under heavy load",
-          "Implemented an Event-driven architecture using RocketMQ for a decoupled and asynchronous transaction management",
-          "Configured microservices with Spring Cloud Gateway, Consul, and OpenFeign, deployed application, integrated with Load Balancer and AWS AutoScaling group on multiple Linux-based EC2 instances, made service open to public with high availability.",
-        ],
-        stack: ['Java', 'Spring Boot', 'Spring Cloud', 'Redis', 'RocketMQ', 'AWS EC2'],
-      },
-      {
-        role: 'AI Engineer Intern',
-        dates: 'May 2025 – Jun 2025',
-        bullets: [
-          'Built a multilingual AI email assistant for cross-border sellers using Python (FastAPI), LangChain, and OpenAI/Claude APIs, automating email triage, quote retrieval, and bilingual reply generation',
-          'Designed a RAG pipeline using PGVector for embedding computation and ElasticSearch for vector storage, surfacing product descriptions, pricing, and policy data in-context; reduced quote preparation time by 60%',
-          'Architected scalable backend infrastructure with Docker and EKS (Kubernetes), routing inbound email responses through AWS SES with metadata persisted in OpenSearch; sustained P95 latency under 800ms at thousands of emails per day',
-          'Instrumented MLOps observability via Prometheus, Grafana, and LangSmith to monitor LLM cost, latency, and draft quality; enforced AES-GCM encryption and RBAC with JWT for data privacy compliance.',
-        ],
-        stack: ['Python', 'FastAPI', 'LangChain', 'RAG', 'PGVector', 'Elasticsearch', 'Docker', 'EKS'],
-      },
+    "company": "Chongqing Jingkai Trading Co., Ltd.",
+    "descriptor": "B2C Cross-Border E-commerce Company",
+    "role": "Full-stack Software Development Intern",
+    "dates": "May 2025 – Aug 2025",
+    "location": "Chongqing, China",
+    "bullets": [
+      "Eliminated overselling at 5,000+ QPS during Prime Day using Redis and Lua atomic stock deduction and distributed locks in a flash-sale backend.",
+      "Cut peak database write load by 60% with RocketMQ event-driven asynchronous order processing that decouples inventory, order, and payment services.",
+      "Designed Spring Boot microservice for marketplace where merchants onboard and sell, using Spring Cloud Gateway, service discovery, and OpenFeign.",
+      "Built an Angular merchant portal and a React and Next.js storefront in TypeScript with Tailwind CSS, using SSG/SSR and lazy loading for fast loads.",
+      "Deployed Docker containers on Kubernetes across multiple AWS EC2 instances with load balancing and auto-scaling groups, sustaining 99.9% uptime.",
+      "Wrote JUnit and Mockito unit tests across the inventory, order, and payment microservices, holding 80% test coverage in the Spring Cloud codebase."
     ],
-  },
+    "stack": [
+      "Java",
+      "Spring Boot",
+      "Spring Cloud",
+      "Redis",
+      "Lua",
+      "RocketMQ",
+      "Angular",
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Docker",
+      "Kubernetes",
+      "AWS EC2",
+      "JUnit",
+      "Mockito"
+    ]
+  }
 ]
 
-// Side projects — placeholder details, edit freely.
 export const sideProjects = [
   {
-    name: 'UIUC Housing',
-    descriptor: 'Apartment hunting for UIUC students',
-    status: 'In progress',
-    dates: '2026',
-    description:
-      'A housing search app for UIUC students — browse off-campus apartments, compare by commute and price, and ask questions in plain English instead of digging through listing sites.',
-    stack: ['RAG', 'React', 'FastAPI', 'PostgreSQL', 'AWS'],
-    links: [
-      { label: 'Live', url: 'https://uiuc-housing-ai.com/about' },
+    "name": "Real-Time Analytics Dashboard",
+    images: [
+      { src: analyticsOverview, alt: 'Analytics dashboard showing live metrics and the latest Wikimedia changes', label: 'Live overview' },
+      { src: analyticsActivity, alt: 'Analytics activity chart with changes per minute, busiest sites, and bot activity', label: 'Activity breakdown' },
     ],
+    "descriptor": "Live event streaming and historical analytics",
+    "visualTitle": "Every event. In real time.",
+    "visualCaption": "100K+ EVENTS / DAY",
+    "description": "Built a Flask and React dashboard that streams 100K+ events/day to browsers through Kafka, Redis pub/sub, and WebSocket at sub-100ms latency.",
+    "bullets": [
+      "Designed an indexed PostgreSQL schema with SQL aggregation queries over 5M+ event records, cutting average query latency by 50% for dashboards.",
+      "Containerized the dashboard stack with Docker and deployed it on Kubernetes, auto-scaling WebSocket workers to support 1,000+ concurrent users.",
+      "Exposed event history and metrics through Flask RESTful APIs that the React frontend queries for historical charts alongside live WebSocket updates.",
+      "Automated builds and tests with GitHub Actions CI/CD, running unit tests and container image builds on every pull request before each release."
+    ],
+    "stack": [
+      "Python",
+      "Flask",
+      "React",
+      "WebSocket",
+      "Kafka",
+      "Redis",
+      "PostgreSQL",
+      "Docker",
+      "Kubernetes",
+      "GitHub Actions"
+    ],
+    "links": [
+      { "label": "Live", "url": "https://analytics.emmazhang.dev/" },
+      { "label": "GitHub", "url": "https://github.com/emmazhang-ai-sde/realtime-analytics-dashboard" }
+    ]
   },
   {
-    name: 'CS 427 Notes & Quizzes',
-    descriptor: 'Study site for UIUC software engineering',
-    status: 'Shipped',
-    dates: '2026',
-    stars: 20,
-    forks: 3,
-    description:
-      'A static study site for CS 427 — weekly notes with topic tabs, embedded mind maps, and interactive quizzes, all in vanilla JavaScript with no build step.',
-    stack: ['JavaScript', 'HTML', 'CSS'],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/emmazhang-ai-sde/uiuc-26sp-cs427-notes-quizzes' },
+    "name": "UIUC Housing Search Platform",
+    images: [{ src: illinirentHome, alt: 'IlliniRent housing search homepage with a Champaign-Urbana map and listing search', label: 'IlliniRent homepage' }],
+    "descriptor": "Housing search and price-per-bed comparison",
+    "visualTitle": "Find your place.",
+    "visualCaption": "1,100+ FLOOR PLANS / UIUC",
+    "description": "Launched a housing search platform serving 500 students who compare 1,100+ Champaign-Urbana floor plans by price per bed across the rental market.",
+    "bullets": [
+      "Built a Playwright scraping pipeline with geocoding and versioned SQLite snapshots, unifying 580+ properties from many listings into one dataset.",
+      "Developed FastAPI APIs serving floor-plan search, filtering, and price-per-bed comparison, deployed on Railway behind a Vercel Next.js frontend.",
+      "Created a Next.js map view with MapLibre showing listings by location, plus Supabase authentication and an admin dashboard for managing listings.",
+      "Gated releases with GitHub Actions CI/CD that runs Playwright end-to-end tests and scraper smoke checks before each Vercel and Railway deploy."
     ],
+    "stack": [
+      "Next.js",
+      "FastAPI",
+      "Supabase",
+      "MapLibre",
+      "Playwright",
+      "SQLite",
+      "Railway",
+      "Vercel",
+      "GitHub Actions"
+    ],
+    "links": [
+      {
+        "label": "Live",
+        "url": "https://illinirent.com/"
+      },
+      { "label": "GitHub", "url": "https://github.com/emmazhang-ai-sde/uiuc-housing-serach-website" }
+    ]
   },
+  {
+    "name": "AI Email Copilot for Cross-Border E-Commerce",
+    images: [{ src: mailpilotOverview, alt: 'MailPilot project overview describing its multilingual AI email assistant and architecture documentation', label: 'MailPilot overview' }],
+    "descriptor": "RAG-powered email drafting for cross-border sales",
+    "visualTitle": "From documents. To drafts.",
+    "visualCaption": "RAG / EMAIL COPILOT",
+    "description": "Built a FastAPI, LangChain, and RAG copilot that drafts emails for cross-border sales reps from product data, cutting quote preparation time by 60%.",
+    "bullets": [
+      "Developed a Docling IDP pipeline with OCR, layout-aware parsing, and semantic chunking, staging parsed documents in S3 to make them RAG-ready.",
+      "Indexed product and import/export policy data with Titan Embeddings V2 on OpenSearch for in-context retrieval when the copilot drafts reply emails.",
+      "Deployed the copilot on Docker and Kubernetes (EKS) with AWS SES email routing, sustaining P95 latency under 800ms at thousands of emails/day.",
+      "Monitored LLM cost and quality with Grafana and LangSmith dashboard, and secured customer email data with AES-GCM encryption and JWT RBAC."
+    ],
+    "stack": [
+      "RAG",
+      "FastAPI",
+      "LangChain",
+      "Docling",
+      "OpenSearch",
+      "AWS Bedrock",
+      "Titan Embeddings V2",
+      "EKS",
+      "S3",
+      "AWS SES",
+      "Grafana",
+      "LangSmith"
+    ],
+    "links": [{ "label": "GitHub", "url": "https://github.com/emmazhang-ai-sde/trade-mail-copilot" }]
+  }
+
 ]
 
-// Collections — a small library of links with short takes, not a blog.
-// Placeholder items: replace with your own picks and one-line comments.
-// Empty for now — the overlay shows a "coming soon" state until this is filled.
-// Restore entries in this shape when curation is ready:
-//   { title, chip: 'chip--blue' | 'chip--purple' | 'chip--amber',
-//     items: [{ title, url, note }] }
-export const collections = []
-
-// Technical Skills, ordered and worded exactly as the résumé lists them.
+// Skills grouped into four compact areas for the portfolio.
 export const skills = [
   {
-    category: "Languages/Framework",
-    items: ["Java", "Python", "C#", "C++", "TypeScript/JavaScript", "React.js", "Next.js"],
+    "category": "Languages & Frontend",
+    "items": [
+      "Java",
+      "Python",
+      "C#",
+      "C++",
+      "TypeScript/JavaScript",
+      "React.js",
+      "Next.js",
+      "React",
+      "Vue.js",
+      "HTML",
+      "CSS",
+      "Angular"
+    ]
   },
   {
-    // Not on the résumé — added so the markup layer is represented
-    category: 'Frontend',
-    items: ['React', 'Vue.js', 'HTML', 'CSS'],
-  },
-  {
-    category: "Backend & APIs",
-    items: [
+    "category": "Backend & Data",
+    "items": [
       "Spring Boot",
       "Spring Cloud",
       "Node.js/Express",
@@ -151,101 +245,67 @@ export const skills = [
       "WebSockets",
       "Kafka/Flink",
       "JWT",
-    ],
+      "MySQL",
+      "SQL/NoSQL schema design",
+      "PostgreSQL",
+      "MongoDB",
+      "Redis",
+      "DynamoDB",
+      "ElasticSearch"
+    ]
   },
   {
-    category: "Databases",
-    items: ["MySQL", "SQL/NoSQL schema design", "PostgreSQL", "MongoDB", "Redis", "DynamoDB", "ElasticSearch"],
+    "category": "AI & Creative Tools",
+    "items": [
+      "RAG",
+      "LangChain",
+      "LangGraph",
+      "LangSmith",
+      "MLOps",
+      "Codex",
+      "Claude Code",
+      "Figma",
+      "Open Design",
+      "Stitch"
+    ]
   },
   {
-    category: "Cloud & DevOps",
-    // two lines, matching the résumé's semicolon: cloud/containers, then tooling
-    groups: [
-      {
-        items: [
-          "AWS",
-          "EC2",
-          "S3",
-          "Lambda",
-          "DynamoDB",
-          "RDS",
-          "SES",
-          "CloudWatch",
-          "EventBridge",
-          "AutoScaling",
-          "CloudFormation/CDK",
-          "Azure",
-          "Docker",
-          "Kubernetes",
-        ],
-      },
-      { items: ["Git", "GitHub Actions", "CI/CD", "Prometheus", "Grafana"] },
-    ],
-  },
-  {
-    category: "Methodologies",
-    items: [
+    "category": "Cloud & Engineering",
+    "items": [
+      "AWS",
+      "EC2",
+      "S3",
+      "Lambda",
+      "DynamoDB",
+      "RDS",
+      "SES",
+      "CloudWatch",
+      "EventBridge",
+      "AutoScaling",
+      "CloudFormation/CDK",
+      "Azure",
+      "Docker",
+      "Kubernetes",
+      "Git",
+      "GitHub Actions",
+      "CI/CD",
+      "Prometheus",
+      "Grafana",
       "Agile/Scrum",
       "Distributed Systems Design",
       "Code Review",
       "Unit Testing (JUnit, Mockito)",
       "Integration Testing",
-      "SDLC",
-    ],
-  },
-  {
-    // Not on the résumé's skills block, but the work behind the AI Engineer claim
-    category: 'AI / ML',
-    items: ['RAG', 'LangChain', 'LangGraph', 'LangSmith', 'MLOps'],
-  },
-  {
-    // Not on the résumé — the tools I actually work with day to day
-    category: 'AI Tools',
-    groups: [
-      { items: ['Codex', 'Claude Code', 'Angular'] },
-      { items: ['Figma', 'Open Design', 'Stitch'] },
-    ],
-  },
+      "SDLC"
+    ]
+  }
 ]
 
 export const education = {
+  shortName: 'UIUC',
   school: 'University of Illinois Urbana-Champaign',
-  degree: 'B.S. Mathematics · Minor in Computer Science',
-  gpa: '3.71 / 4.0',
+  degree: 'B.S. in General Mathematics',
+  minor: 'Minor in Computer Science',
+  graduation: 'Aug 2024 – Dec 2026 (Expected)',
   location: 'Champaign, IL',
-  // Two columns, rendered in array order — first entry sits on the left.
-  // Both are framed cards with the same border and shadow; the one marked
-  // `lead: true` carries the focus through heavier row ink and its accent.
-  // Listed intro → advanced, so each column reads as a progression.
-  // Rows may pair two courses: '&' joins courses that share a subject
-  // (Calculus II & III), '/' separates two different subjects.
-  coursework: [
-    {
-      category: 'Mathematics',
-      accent: 'ink',
-      items: [
-        'Calculus II & III',
-        'Discrete Mathematics',
-        'Non-Euclidean Geometry',
-        'Combinatorics / Statistics & Probability',
-        'Applied & Abstract Linear Algebra',
-        'Differential Equations',
-        'Real Analysis',
-      ],
-    },
-    {
-      category: 'Computer Science',
-      // `accent` picks the column's colour: 'mint' | 'ink' (no hue) |
-      // 'purple' | 'blue' | 'amber'
-      accent: 'mint',
-      lead: true,
-      items: [
-        'Data Structures',
-        'Algorithms',
-        'Computer Systems',
-        'Database Systems',
-        'Software Engineering',
-      ],
-    },
-  ],
 }

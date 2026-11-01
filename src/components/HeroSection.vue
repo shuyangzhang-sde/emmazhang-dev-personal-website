@@ -1,234 +1,71 @@
 <script setup>
-import { computed } from 'vue'
+import EducationSection from './EducationSection.vue'
 import { profile } from '../data/resume.js'
-
-// The role marked `primary` becomes the headline; the rest trail beneath it.
-const primaryRole = computed(() => profile.roles.find((r) => r.primary) ?? profile.roles[0])
-const otherRoles = computed(() => profile.roles.filter((r) => r !== primaryRole.value))
+import portrait from '../assets/portraits/emma-portrait-cutout.png'
 </script>
 
 <template>
   <header id="top" class="hero">
     <div class="hero-inner">
-      <p class="hero-greeting" v-reveal>{{ profile.greeting }}</p>
-      <h1 class="hero-name" v-reveal="{ delay: 100 }">
-        <span class="hero-highlight">{{ profile.name }}</span>
-      </h1>
-      <p class="hero-tagline" v-reveal="{ delay: 220 }">{{ profile.tagline }}</p>
-
-      <p class="hero-role" v-reveal="{ delay: 300 }">
-        <span class="hero-role-mark">{{ primaryRole.label }}</span>
-      </p>
-      <p class="hero-role-also" v-reveal="{ delay: 340 }">
-        <template v-for="(role, i) in otherRoles" :key="role.label">
-          <span v-if="i" class="hero-role-sep" aria-hidden="true">·</span>{{ role.label }}
-        </template>
-      </p>
-
-      <p class="hero-subtitle" v-reveal="{ delay: 380 }">{{ profile.subtitle }}</p>
-      <div class="hero-actions" v-reveal="{ delay: 420 }">
-        <a class="btn-ink" :href="`mailto:${profile.email}`">Get in touch</a>
-        <a v-if="profile.resumeUrl" class="btn-mint" :href="profile.resumeUrl">Download résumé</a>
-        <a v-else class="btn-mint" href="#experience">See my work</a>
+      <p class="hero-eyebrow">PERSONAL PORTFOLIO / SOFTWARE & AI</p>
+      <h1 class="hero-title">Software Engineer</h1>
+      <div class="hero-composition">
+        <div class="hero-disciplines">
+          <ul class="hero-specialties"><li>AI Engineer</li><li>Full Stack Development</li><li>Backend Development</li><li>Cloud Infrastructure</li></ul>
+          <a href="#projects" class="hero-work">Explore my work <span aria-hidden="true">↘</span></a>
+        </div>
+        <img class="hero-portrait" :src="portrait" alt="Illustrated portrait of Emma Zhang in a blue shirt" width="832" height="976" fetchpriority="high" />
+        <div class="hero-intro"><p class="hero-location">OPEN TO RELOCATE ACROSS THE U.S.</p><EducationSection /><p class="hero-greeting">HEY, I'M</p><h2>{{ profile.name }}</h2><p class="hero-tagline">{{ profile.tagline }}</p></div>
       </div>
+      <p class="hero-summary">{{ profile.subtitle }}</p>
+      <div class="hero-bottom"><span>FROM IDEA TO PRODUCTION</span><a href="#experience">SCROLL TO EXPLORE ↓</a></div>
     </div>
-
-    <!-- jobright homage: the match-score card, floating over the hero -->
-    <aside class="match-card" aria-hidden="true">
-      <svg class="match-ring" viewBox="0 0 56 56" width="56" height="56">
-        <circle cx="28" cy="28" r="24" fill="none" stroke="var(--grey-line)" stroke-width="5" />
-        <circle
-          cx="28"
-          cy="28"
-          r="24"
-          fill="none"
-          stroke="var(--brand)"
-          stroke-width="5"
-          stroke-linecap="round"
-          stroke-dasharray="150.8"
-          stroke-dashoffset="3"
-          transform="rotate(-90 28 28)"
-        />
-        <text x="28" y="33" text-anchor="middle" class="match-score">98%</text>
-      </svg>
-      <div>
-        <p class="match-role">AI Engineer</p>
-        <p class="match-label">Strong match</p>
-      </div>
-    </aside>
   </header>
 </template>
 
 <style scoped>
-.hero {
-  position: relative;
-  background: var(--hero-ground);
-  border-radius: 0 0 var(--scoop) 0;
-  min-height: 92svh;
-  display: flex;
-  align-items: center;
-  padding: 160px 22px 96px;
+.hero { --title-color: #d47763; --marker-color: #ed927e; background: var(--hero-ground); padding: 155px clamp(20px, 2.5vw, 80px) 32px; }
+.hero-inner { width: 100%; max-width: none; margin: auto; container-type: inline-size; }
+.hero-eyebrow::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--coral); margin-right: 10px; }
+.hero-eyebrow { font-size: calc(11px * var(--type-scale)); letter-spacing: .12em; margin-bottom: 12px; }
+.hero-title { color: var(--title-color); font-family: var(--font-sans); font-size: calc(9.75cqw * var(--type-scale)); font-weight: 750; line-height: 1.08; letter-spacing: -.045em; word-spacing: .06em; text-align: center; position: relative; z-index: 1; }
+.hero-location { text-align: left; font-size: calc(10px * var(--type-scale)); letter-spacing: .18em; margin: 0 0 16px; }
+.hero-composition { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 26cqw) minmax(0, 1fr); gap: clamp(20px, 2cqw, 48px); align-items: end; margin: -1.8cqw auto 0; max-width: none; }
+.hero-portrait { align-self: end; width: 100%; height: auto; object-fit: contain; }
+.hero-specialties { display: grid; gap: 14px; list-style: none; padding: 0; color: var(--primary); font-size: calc(16px * var(--type-scale)); font-weight: 650; line-height: 1.5; letter-spacing: -.015em; }
+.hero-specialties li { display: grid; grid-template-columns: 8px minmax(0, 1fr); align-items: baseline; column-gap: 12px; }
+.hero-specialties li::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--marker-color); align-self: start; margin-top: .56em; }
+.hero-disciplines { font-size: calc(12px * var(--type-scale)); font-weight: 600; line-height: 1.9; padding-bottom: 16px; }
+.hero-work { color: var(--accent-ink); display: inline-flex; gap: 28px; border: 0; margin-top: 28px; padding-bottom: 5px; }
+.hero-intro { align-self: end; padding-top: 24px; padding-bottom: 16px; }
+.hero-intro :deep(.hero-education) { padding-bottom: 0; margin-bottom: 22px; }
+.hero-intro :deep(.education-university) { max-width: none; }
+.hero-greeting { font-size: calc(11px * var(--type-scale)); color: var(--text-secondary); }
+.hero-intro > h2 { font-size: calc(28px * var(--type-scale)); font-weight: 750; letter-spacing: -.035em; line-height: 1.2; margin: 5px 0 10px; }
+.hero-tagline { max-width: 30ch; font-size: calc(14px * var(--type-scale)); color: var(--text-secondary); }
+.hero-summary { text-align: center; max-width: 600px; font-size: calc(14px * var(--type-scale)); line-height: 1.65; color: var(--text-secondary); margin: 28px auto 60px; }
+.hero-bottom { border: 0; padding-top: 20px; display: flex; justify-content: space-between; font-size: calc(9px * var(--type-scale)); letter-spacing: .13em; }
+@media(min-width: 1001px) {
+  /* Share the title's left edge; keep the list markers outside that text axis. */
+  .hero-title { text-align: left; padding-left: 3.5cqw; }
+  .hero-disciplines { padding-left: 3.5cqw; }
+  .hero-specialties li { display: block; position: relative; }
+  .hero-specialties li::before { position: absolute; left: -20px; top: 0; }
+
+  .hero-eyebrow { font-size: clamp(12px, .9cqw, 20px); }
+  .hero-location { font-size: clamp(11px, .8cqw, 18px); }
+  .hero-specialties { font-size: clamp(18px, 1.4cqw, 32px); gap: 1cqw; }
+  .hero-work { font-size: clamp(14px, 1cqw, 23px); }
+  .hero-intro { padding-top: 1.7cqw; padding-bottom: 1.1cqw; }
+  .hero-intro > h2 { font-size: clamp(30px, 2.4cqw, 56px); }
+  .hero-greeting { font-size: clamp(12px, .85cqw, 20px); }
+  .hero-tagline { font-size: clamp(16px, 1.15cqw, 27px); max-width: none; }
+  .hero-intro :deep(.education-label) { font-size: clamp(11px, .8cqw, 18px); }
+  .hero-intro :deep(.education-school) { font-size: clamp(34px, 2.6cqw, 62px); }
+  .hero-intro :deep(.education-university), .hero-intro :deep(.education-degree) { font-size: clamp(14px, 1.05cqw, 25px); }
+  .hero-intro :deep(.education-date) { font-size: clamp(13px, 1cqw, 23px); }
+  .hero-summary { max-width: 64cqw; font-size: clamp(16px, 1.1cqw, 26px); }
+  .hero-bottom { font-size: clamp(11px, .8cqw, 18px); }
 }
-
-.hero-inner {
-  max-width: var(--content-width);
-  margin: 0 auto;
-  width: 100%;
-  text-align: center;
-}
-
-.hero-greeting {
-  font-size: clamp(21px, 3vw, 28px);
-  font-weight: 600;
-  color: var(--text-secondary);
-}
-
-.hero-name {
-  font-size: clamp(52px, 10vw, 104px);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
-  margin-top: 8px;
-}
-
-.hero-highlight {
-  background: var(--grad-mint);
-  border-radius: 20px;
-  padding: 0 0.22em;
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
-}
-
-.hero-tagline {
-  font-size: clamp(24px, 4vw, 40px);
-  font-weight: 600;
-  letter-spacing: -0.015em;
-  line-height: 1.15;
-  margin-top: 24px;
-}
-
-/* Target roles. The primary one is display type wearing the mint mark — the
-   same highlight as the name — so it is unmissable; the other two follow as
-   one supporting line, large enough to read as real titles rather than fine
-   print, but held below the tagline so the hierarchy stays intact. */
-.hero-role {
-  font-size: clamp(34px, 5.6vw, 60px);
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  line-height: 1.04;
-  margin-top: 22px;
-}
-
-.hero-role-mark {
-  background: var(--grad-mint);
-  border-radius: 16px;
-  padding: 0 0.18em;
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
-}
-
-.hero-role-also {
-  font-size: clamp(17px, 2.1vw, 22px);
-  font-weight: 600;
-  letter-spacing: -0.015em;
-  color: var(--text-soft);
-  margin-top: 18px;
-}
-
-.hero-role-sep {
-  color: var(--text-tertiary);
-  margin: 0 10px;
-}
-
-.hero-subtitle {
-  font-size: clamp(17px, 2.2vw, 21px);
-  line-height: 1.5;
-  color: var(--text-secondary);
-  max-width: var(--narrow-width);
-  margin: 20px auto 0;
-}
-
-.hero-actions {
-  margin-top: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-/* floating match card */
-.match-card {
-  position: absolute;
-  right: max(4%, calc((100% - 1280px) / 2));
-  top: 24%;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  background: var(--card-bg);
-  border: 1px solid var(--ink-border);
-  border-radius: var(--r-card);
-  box-shadow: var(--shadow-card);
-  padding: 16px 20px;
-  transform: rotate(4deg);
-  animation: bob 6s ease-in-out infinite alternate;
-}
-
-.match-score {
-  font-size: 13px;
-  font-weight: 700;
-  fill: var(--text);
-  font-family: var(--font-sans);
-}
-
-.match-role {
-  font-size: 15px;
-  font-weight: 600;
-}
-
-.match-label {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--link);
-  margin-top: 2px;
-}
-
-@keyframes bob {
-  from {
-    transform: rotate(4deg) translateY(0);
-  }
-  to {
-    transform: rotate(4deg) translateY(-14px);
-  }
-}
-
-@media (max-width: 1067px) {
-  .match-card {
-    display: none;
-  }
-}
-
-@media (max-width: 734px) {
-  .hero-role-also {
-    line-height: 1.35;
-  }
-
-  .hero-role-sep {
-    margin: 0 6px;
-  }
-
-  .hero {
-    border-radius: 0 0 64px 0;
-    padding-top: 120px;
-    min-height: 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .match-card {
-    animation: none;
-  }
-}
+@media(max-width: 1000px) { .hero { padding: 130px 20px 24px; } .hero-title { font-size: calc(8.1vw * var(--type-scale)); } .hero-location { font-size: calc(10px * var(--type-scale)); letter-spacing: .12em; margin: 0 0 16px; } .hero-composition { grid-template-columns: 1fr 1fr; gap: 20px; margin-top: -8px; } .hero-portrait { grid-column: 1 / -1; grid-row: 1; width: 240px; height: auto; margin: auto; } .hero-disciplines { align-self: start; font-size: calc(11px * var(--type-scale)); padding: 0; } .hero-specialties { font-size: calc(13px * var(--type-scale)); gap: 12px; } .hero-specialties li { grid-template-columns: 6px minmax(0, 1fr); column-gap: 8px; } .hero-specialties li::before { width: 6px; height: 6px; } .hero-intro { padding: 0; } .hero-intro > h2 { font-size: calc(23px * var(--type-scale)); } .hero-tagline { font-size: calc(12px * var(--type-scale)); } .hero-work { margin-top: 12px; gap: 12px; } .hero-summary { margin-bottom: 40px; } .hero-bottom { font-size: calc(9px * var(--type-scale)); letter-spacing: .03em; } }
 </style>

@@ -2,20 +2,8 @@
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { profile } from '../data/resume.js'
 
-const props = defineProps({ libraryOpen: Boolean })
-const emit = defineEmits(['open-library', 'navigate'])
-
-// While the library "page" is showing, anchors can't scroll the locked page —
-// hand the target to the parent, which closes the library first.
-function go(event, href) {
-  if (props.libraryOpen) {
-    event.preventDefault()
-    emit('navigate', href)
-  }
-}
-
 const links = [
-  { label: 'Professional Experience', href: '#experience' },
+  { label: 'Experience', href: '#experience' },
   { label: 'Projects', href: '#projects' },
   { label: 'Skills', href: '#skills' },
   { label: 'Education', href: '#education' },
@@ -64,7 +52,7 @@ onBeforeUnmount(() => {
 
 <template>
   <nav class="nav">
-    <a class="nav-brand" href="#top" @click="go($event, '#top')">{{ profile.name }}</a>
+    <a class="nav-brand" href="#top">{{ profile.name }}</a>
     <div class="nav-links">
       <a
         v-for="link in links"
@@ -72,27 +60,20 @@ onBeforeUnmount(() => {
         :href="link.href"
         :class="{ 'is-active': activeId === link.href.slice(1) }"
         :aria-current="activeId === link.href.slice(1) ? 'true' : undefined"
-        @click="go($event, link.href)"
       >{{ link.label }}</a>
     </div>
-    <button
-      class="nav-cta"
-      :class="{ 'nav-cta--active': libraryOpen }"
-      @click="emit('open-library')"
-    >My AI Library</button>
   </nav>
 </template>
 
 <style scoped>
 .nav {
   position: fixed;
-  top: 14px;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 0;
+  left: 0;
   z-index: 40;
-  width: min(880px, calc(100% - 32px));
-  height: 56px;
-  padding: 0 10px 0 24px;
+  width: 100%;
+  height: 85px;
+  padding: 0 var(--page-gutter);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -100,100 +81,24 @@ onBeforeUnmount(() => {
   background: var(--nav-bg);
   -webkit-backdrop-filter: blur(30px);
   backdrop-filter: blur(30px);
-  border-radius: var(--r-nav);
-  box-shadow: var(--shadow-nav);
 }
-
-.nav-brand {
-  font-size: 17px;
-  font-weight: 700;
-  color: var(--text);
-  white-space: nowrap;
+.nav-brand { font-size: calc(18px * var(--type-scale)); font-weight: 700; letter-spacing: -.035em; color: var(--text); white-space: nowrap; }
+.nav-links { display: flex; gap: 8px; }
+.nav-links a { color: var(--text-secondary); font-weight: 500; text-transform: uppercase; font-size: calc(11px * var(--type-scale)); letter-spacing: .03em; padding: 8px; white-space: nowrap; transition: color .2s var(--ease-out); }
+.nav-links a::before { content: '[ '; }
+.nav-links a::after { content: ' ]'; }
+.nav-links a.is-active { color: var(--accent-ink); font-weight: 600; background: var(--surface); border-radius: 8px; }
+.nav-brand:hover, .nav-links a:hover { color: var(--accent-ink); text-decoration: none; }
+@media(max-width:734px) {
+  .nav { height: 72px; padding: 0 20px; gap: 10px; }
+  .nav-brand { font-size: calc(16px * var(--type-scale)); }
+  .nav-links { gap: 4px; }
+  .nav-links a { padding: 0 8px; font-size: calc(10px * var(--type-scale)); }
+  .nav-links a:nth-child(n + 3) { display: none; }
 }
-
-.nav-links {
-  display: flex;
-  gap: 4px;
-}
-
-.nav-links a {
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  color: var(--text-secondary);
-  padding: 7px 12px;
-  border-radius: var(--r-pill);
-  white-space: nowrap;
-  transition:
-    color 0.2s var(--ease-out),
-    background-color 0.25s var(--ease-out),
-    box-shadow 0.25s var(--ease-out);
-}
-
-/* the section you're currently scrolled into */
-.nav-links a.is-active {
-  color: var(--text);
-  font-weight: 600;
-  background: var(--tint-brand);
-  box-shadow:
-    0 2px 10px 0 rgba(0, 240, 160, 0.3),
-    0 0 0 1px rgba(0, 240, 160, 0.35);
-}
-
-.nav-brand:hover,
-.nav-links a:hover {
-  color: var(--text);
-  text-decoration: none;
-}
-
-/* jobright-style pill CTA at the right end of the bar */
-.nav-cta {
-  flex-shrink: 0;
-  font-family: inherit;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  padding: 9px 18px;
-  color: var(--bg);
-  background: var(--text);
-  border: none;
-  border-radius: var(--r-pill);
-  cursor: pointer;
-  transition:
-    transform 0.2s var(--ease-out),
-    box-shadow 0.2s var(--ease-out);
-}
-
-.nav-cta:hover {
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-lift);
-}
-
-.nav-cta--active {
-  background: var(--brand);
-  color: #000;
-}
-
-@media (max-width: 734px) {
-  .nav {
-    height: 52px;
-    padding-left: 18px;
-  }
-
-  .nav-links {
-    gap: 14px;
-  }
-
-  /* small screens keep Experience + Projects + the library pill */
-  .nav-links a:nth-child(3),
-  .nav-links a:nth-child(4),
-  .nav-links a:nth-child(5) {
-    display: none;
-  }
-
-  .nav-cta {
-    font-size: 12px;
-    padding: 8px 14px;
-  }
+@media(max-width:400px) {
+  .nav { height: 86px; flex-wrap: wrap; align-content: center; gap: 6px; }
+  .nav-links { width: 100%; justify-content: center; }
+  .nav-links a { padding: 2px 8px; }
 }
 </style>

@@ -1,4 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="63" height="63" x="0.5" y="0.5" rx="14" fill="#00f0a0" stroke="#000"/>
-  <text x="32" y="43" text-anchor="middle" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="28" font-weight="700" fill="#000000">EZ</text>
+  <title>Emma Zhang</title>
+  <rect width="64" height="64" rx="18" fill="#d47763"/>
+  <g fill="#fffaf7">
+    <path d="M14 18h16v5H20v6h9v5h-9v7h10v5H14z"/>
+    <path d="M34 18h17v5L40 41h11v5H33v-5l11-18H34z"/>
+  </g>
 </svg>

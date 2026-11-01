@@ -1,31 +1,43 @@
+@font-face {
+  font-family: 'Manrope';
+  src: url('./assets/fonts/Manrope-variable.ttf') format('truetype');
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ---------------------------------------------------------------------------
-   Design tokens — v2 fusion: Apple bones, jobright skin.
-   Mint system values from ~/ui-design-references/jobright/ (design values
-   only; no logo/illustration/copy reuse). Light-first; dark auto-switches.
+   Shared type scale and the white, lavender, blue, and coral palette.
 --------------------------------------------------------------------------- */
 :root {
-  color-scheme: light dark;
+  color-scheme: light;
+  --type-scale: 1.15;
+  --primary: #304e9b;
+  --accent: #7185e8;
+  --accent-ink: #4357b5;
+  --coral: #ed927e;
+  --surface: #f3f2fc;
 
   /* grounds */
   --bg: #ffffff;
-  --bg-alt: #f7f8f9;
-  --hero-ground: #ecffe0;
-  --card-bg: #ffffff;
-  --nav-bg: rgba(255, 255, 255, 0.9);
+  --bg-alt: #ffffff;
+  --hero-ground: #ffffff;
+  --card-bg: var(--surface);
+  --nav-bg: rgba(255, 255, 255, 0.96);
 
   /* ink & text */
   --text: #000000;
   --text-soft: #232424;
   --text-secondary: #4b5253;
-  --text-tertiary: #9ca3af;
+  --text-tertiary: #686a70;
 
   /* brand */
-  --brand: #00f0a0;
+  --brand: var(--surface);
   /* ink-weight green — bright enough to read as the mint family, dark enough
      to hold up as text rather than sit behind it (5.2:1 on white) */
-  --brand-deep: #0a7d47;
-  --link: #1ca05c;
-  --tint-brand: rgba(0, 240, 160, 0.25);
+  --brand-deep: #303033;
+  --link: var(--accent-ink);
+  --tint-brand: #e9e7f8;
 
   /* chip tints (bg) + saturated text */
   --tint-blue: rgba(20, 200, 240, 0.12);
@@ -42,7 +54,7 @@
   --chip-ink: #333b37;
 
   /* lines & borders */
-  --ink-border: #000000;
+  --ink-border: #dededb;
   --grey-line: #eaeaea;
 
   /* gradients (the 266° mint family) */
@@ -50,7 +62,7 @@
   --grad-mint-soft: linear-gradient(266deg, #b5ffe4, #d2ffc8);
 
   /* shadows */
-  --shadow-card: 0 8px 32px 0 rgba(0, 37, 106, 0.04);
+  --shadow-card: none;
   --shadow-nav: 0 0 0 0.5px rgba(0, 0, 0, 0.04), 0 0 32px 0 rgba(10, 20, 21, 0.06);
   --shadow-lift: 0 16px 40px 0 rgba(0, 37, 106, 0.1);
 
@@ -61,51 +73,13 @@
   --r-nav: 32px;
   --scoop: 120px;
 
-  --font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text',
+  --font-sans: 'Manrope', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text',
     'Helvetica Neue', 'Segoe UI', Roboto, Arial, sans-serif;
 
-  --content-width: 980px;
+  --content-width: 1440px;
+  --page-gutter: clamp(20px, 3vw, 64px);
   --narrow-width: 700px;
   --ease-out: cubic-bezier(0.25, 0.1, 0.25, 1);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #101411;
-    --bg-alt: #161d19;
-    --hero-ground: #17231a;
-    --card-bg: #1a231e;
-    --nav-bg: rgba(22, 29, 25, 0.85);
-
-    --text: #f0f7f2;
-    --text-soft: #d8e2db;
-    --text-secondary: #b3c0b7;
-    --text-tertiary: #93a398;
-
-    --brand-deep: #3ad894;
-    --link: #3ddb8a;
-    --tint-brand: rgba(0, 240, 160, 0.18);
-
-    --tint-blue: rgba(20, 200, 240, 0.16);
-    --chip-blue: #55d2f0;
-    --tint-purple: rgba(140, 120, 255, 0.2);
-    --chip-purple: #ab9bff;
-    --tint-amber: rgba(253, 167, 0, 0.18);
-    --chip-amber: #f0b445;
-    --tint-green: rgba(40, 200, 110, 0.18);
-    --chip-green: #4fd88a;
-
-    --chip-ink: #d5e0d8;
-    --ink-border: #e6efe9;
-    --grey-line: #263129;
-
-    --grad-mint: linear-gradient(266deg, #123c2e, #1c3320);
-    --grad-mint-soft: linear-gradient(266deg, #16342a, #1e3522);
-
-    --shadow-card: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-    --shadow-nav: 0 0 0 0.5px rgba(255, 255, 255, 0.08), 0 0 32px 0 rgba(0, 0, 0, 0.45);
-    --shadow-lift: 0 16px 40px 0 rgba(0, 0, 0, 0.5);
-  }
 }
 
 /* --------------------------------- Reset --------------------------------- */
@@ -118,9 +92,9 @@
 body {
   margin: 0;
   font-family: var(--font-sans);
-  font-size: 17px;
-  line-height: 1.47;
-  letter-spacing: -0.022em;
+  font-size: calc(17px * var(--type-scale));
+  line-height: 1.55;
+  letter-spacing: -0.012em;
   color: var(--text);
   background: var(--bg);
   text-rendering: optimizeLegibility;
@@ -146,7 +120,7 @@ a:hover {
 }
 
 :focus-visible {
-  outline: 2px solid var(--brand);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
   border-radius: 4px;
 }
@@ -157,7 +131,7 @@ html {
 
 /* ------------------------------ Shared layout ----------------------------- */
 .section {
-  padding: 110px 22px;
+  padding: 110px var(--page-gutter);
 }
 
 .section--alt {
@@ -165,12 +139,13 @@ html {
 }
 
 .section-inner {
+  width: 100%;
   max-width: var(--content-width);
   margin: 0 auto;
 }
 
 .section-title {
-  font-size: clamp(32px, 5vw, 48px);
+  font-size: calc(clamp(32px, 5vw, 48px) * var(--type-scale));
   font-weight: 700;
   letter-spacing: -0.015em;
   line-height: 1.08;
@@ -181,7 +156,7 @@ html {
 .btn-ink,
 .btn-mint {
   display: inline-block;
-  font-size: 17px;
+  font-size: calc(17px * var(--type-scale));
   font-weight: 600;
   padding: 14px 32px;
   border-radius: var(--r-pill);
@@ -191,14 +166,14 @@ html {
 }
 
 .btn-ink {
-  background: var(--text);
+  background: var(--primary);
   color: var(--bg);
 }
 
 .btn-mint {
   background: var(--brand);
   color: #000;
-  border: 1px solid #000;
+  border: 0;
 }
 
 .btn-ink:hover,
@@ -211,7 +186,7 @@ html {
 /* chips */
 .chip {
   display: inline-block;
-  font-size: 13px;
+  font-size: calc(13px * var(--type-scale));
   font-weight: 600;
   letter-spacing: 0;
   border-radius: 14px;
@@ -273,4 +248,31 @@ html {
   .section {
     padding: 72px 20px;
   }
+}
+
+/* Editorial portfolio: shared rhythm and neutral surfaces. */
+section[id], header[id], #project-list { scroll-margin-top: 100px; }
+.section-kicker { font-size: calc(11px * var(--type-scale)); font-weight: 500; letter-spacing: .16em; }
+.section-title { font-size: calc(clamp(38px, 5vw, 64px) * var(--type-scale)); letter-spacing: -.055em; }
+.btn-mint { background: transparent; }
+#projects .project-card { border: 0; background: var(--surface); box-shadow: none; padding: 18px 22px 28px; }
+#projects .project-header { align-items: start; flex-wrap: wrap; }
+#projects .project-name { font-size: calc(25px * var(--type-scale)); line-height: 1.25; letter-spacing: -.025em; }
+#projects .project-visual { transition: transform .3s ease; }
+#projects .project-card:hover .project-visual { transform: translateY(-3px); }
+#contact .contact-block { background: var(--surface); border: 0; }
+
+/* Match the emphasis in the source résumé while keeping body copy readable. */
+strong { font-weight: 700; }
+
+/* A small set of accents keeps the white canvas lively and consistent. */
+a { transition: color .2s ease; }
+a:hover { color: var(--accent-ink); }
+.btn-ink:hover { background: var(--accent-ink); color: #fff; }
+
+/* Only the hero and project showcase expand across wide viewports. */
+#projects { padding-inline: clamp(20px, 2.5vw, 80px); }
+#projects > .section-inner { max-width: none; }
+@media (max-width: 734px) {
+  #projects { padding-inline: 20px; }
 }
