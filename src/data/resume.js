@@ -23,7 +23,7 @@ export const profile = {
   // Drop the PDF into /public and update this path when ready
   resumeUrl: null,
   links: [
-    { label: 'GitHub', url: 'https://github.com/emmazhang-ai-sde' },
+    { label: 'GitHub', url: 'https://github.com/shuyangzhang-sde' },
     { label: 'LinkedIn', url: 'https://www.linkedin.com/in/shuyangzhang-ai-sde/' },
   ],
 }
@@ -147,7 +147,7 @@ export const sideProjects = [
     ],
     "links": [
       { "label": "Live", "url": "https://analytics.emmazhang.dev/" },
-      { "label": "GitHub", "url": "https://github.com/emmazhang-ai-sde/realtime-analytics-dashboard" }
+      { "label": "GitHub", "url": "https://github.com/shuyangzhang-sde/realtime-analytics-dashboard" }
     ]
   },
   {
@@ -179,7 +179,7 @@ export const sideProjects = [
         "label": "Live",
         "url": "https://illinirent.com/"
       },
-      { "label": "GitHub", "url": "https://github.com/emmazhang-ai-sde/uiuc-housing-serach-website" }
+      { "label": "GitHub", "url": "https://github.com/shuyangzhang-sde/uiuc-housing-serach-website" }
     ]
   },
   {
@@ -209,7 +209,7 @@ export const sideProjects = [
       "Grafana",
       "LangSmith"
     ],
-    "links": [{ "label": "GitHub", "url": "https://github.com/emmazhang-ai-sde/trade-mail-copilot" }]
+    "links": [{ "label": "GitHub", "url": "https://github.com/shuyangzhang-sde/trade-mail-copilot" }]
   }
 
 ]
