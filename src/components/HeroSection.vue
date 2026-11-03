@@ -14,7 +14,7 @@ import portrait from '../assets/portraits/emma-portrait-cutout.png'
           <ul class="hero-specialties"><li>AI Engineer</li><li>Full Stack Development</li><li>Backend Development</li><li>Cloud Infrastructure</li></ul>
           <a href="#projects" class="hero-work">Explore my work <span aria-hidden="true">↘</span></a>
         </div>
-        <img class="hero-portrait" :src="portrait" alt="Illustrated portrait of Emma Zhang in a blue shirt" width="832" height="976" fetchpriority="high" />
+        <img class="hero-portrait" :src="portrait" alt="Illustrated portrait of Shuyang Zhang in a blue shirt" width="832" height="976" fetchpriority="high" />
         <div class="hero-intro"><p class="hero-location">OPEN TO RELOCATE ACROSS THE U.S.</p><EducationSection /><p class="hero-greeting">HEY, I'M</p><h2>{{ profile.name }}</h2><p class="hero-tagline">{{ profile.tagline }}</p></div>
       </div>
       <p class="hero-summary">{{ profile.subtitle }}</p>

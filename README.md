@@ -1,6 +1,6 @@
 # emmazhang.dev
 
-Personal résumé site for Emma Zhang. Vue 3 + Vite, single-page.
+Personal résumé site for Shuyang Zhang. Vue 3 + Vite, single-page.
 
 See `DESIGN.md` for design decisions and open items.
 

@@ -6,7 +6,7 @@ import mailpilotOverview from '../assets/projects/mailpilot-overview.png'
 // All site content lives here — edit this file, not the components.
 
 export const profile = {
-  name: 'Emma Zhang',
+  name: 'Shuyang Zhang',
   greeting: "Hello, I'm",
   tagline: 'I build AI-powered products end to end.',
   // Target roles, rendered as chips under the tagline. `primary: true` gets the

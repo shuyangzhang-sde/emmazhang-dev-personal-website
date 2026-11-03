@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <title>Emma Zhang</title>
+  <title>Shuyang Zhang</title>
   <rect width="64" height="64" rx="18" fill="#d47763"/>
   <g fill="#fffaf7">
-    <path d="M14 18h16v5H20v6h9v5h-9v7h10v5H14z"/>
+    <path d="M30 19v6c-3-2-10-3-10 1 0 5 12 2 12 12 0 10-13 10-19 6v-6c4 3 13 5 13 0 0-5-12-2-12-12 0-9 10-11 16-7z"/>
     <path d="M34 18h17v5L40 41h11v5H33v-5l11-18H34z"/>
   </g>
 </svg>
