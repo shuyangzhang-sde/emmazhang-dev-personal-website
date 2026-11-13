@@ -85,7 +85,7 @@ export const experience = [
     "company": "Chongqing Jingkai Trading Co., Ltd.",
     "descriptor": "B2C Cross-Border E-commerce Company",
     "role": "Full-stack Software Development Intern",
-    "dates": "May 2025 – Aug 2025",
+    "dates": "May 2024 – Aug 2024",
     "location": "Chongqing, China",
     "bullets": [
       "Eliminated overselling at 5,000+ QPS during Prime Day using Redis and Lua atomic stock deduction and distributed locks in a flash-sale backend.",
