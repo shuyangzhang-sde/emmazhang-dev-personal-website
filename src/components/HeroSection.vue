@@ -25,7 +25,7 @@ import portrait from '../assets/portraits/emma-portrait-cutout.png'
 
 <style scoped>
 .hero { --title-color: #d47763; --marker-color: #ed927e; background: var(--hero-ground); padding: 155px clamp(20px, 2.5vw, 80px) 32px; }
-.hero-inner { width: 100%; max-width: none; margin: auto; container-type: inline-size; }
+.hero-inner { --hero-text-inset: 14px; width: 100%; max-width: none; margin: auto; container-type: inline-size; }
 .hero-eyebrow::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--coral); margin-right: 10px; }
 .hero-eyebrow { font-size: calc(11px * var(--type-scale)); letter-spacing: .12em; margin-bottom: 12px; }
 .hero-title { color: var(--title-color); font-family: var(--font-sans); font-size: calc(9.75cqw * var(--type-scale)); font-weight: 750; line-height: 1.08; letter-spacing: -.045em; word-spacing: .06em; text-align: center; position: relative; z-index: 1; }
@@ -33,9 +33,9 @@ import portrait from '../assets/portraits/emma-portrait-cutout.png'
 .hero-composition { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 26cqw) minmax(0, 1fr); gap: clamp(20px, 2cqw, 48px); align-items: end; margin: -1.8cqw auto 0; max-width: none; }
 .hero-portrait { align-self: end; width: 100%; height: auto; object-fit: contain; }
 .hero-specialties { display: grid; gap: 14px; list-style: none; padding: 0; color: var(--primary); font-size: calc(16px * var(--type-scale)); font-weight: 650; line-height: 1.5; letter-spacing: -.015em; }
-.hero-specialties li { display: grid; grid-template-columns: 8px minmax(0, 1fr); align-items: baseline; column-gap: 12px; }
-.hero-specialties li::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--marker-color); align-self: start; margin-top: .56em; }
-.hero-disciplines { font-size: calc(12px * var(--type-scale)); font-weight: 600; line-height: 1.9; padding-bottom: 16px; }
+.hero-specialties li { position: relative; }
+.hero-specialties li::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--marker-color); position: absolute; inset-inline-start: calc(-1 * var(--hero-text-inset)); top: .56em; }
+.hero-disciplines { font-size: calc(12px * var(--type-scale)); font-weight: 600; line-height: 1.9; padding-bottom: 16px; padding-inline-start: var(--hero-text-inset); }
 .hero-work { color: var(--accent-ink); display: inline-flex; gap: 28px; border: 0; margin-top: 28px; padding-bottom: 5px; }
 .hero-intro { align-self: end; padding-top: 24px; padding-bottom: 16px; }
 .hero-intro :deep(.hero-education) { padding-bottom: 0; margin-bottom: 22px; }
@@ -43,14 +43,12 @@ import portrait from '../assets/portraits/emma-portrait-cutout.png'
 .hero-greeting { font-size: calc(11px * var(--type-scale)); color: var(--text-secondary); }
 .hero-intro > h2 { font-size: calc(28px * var(--type-scale)); font-weight: 750; letter-spacing: -.035em; line-height: 1.2; margin: 5px 0 10px; }
 .hero-tagline { max-width: 30ch; font-size: calc(14px * var(--type-scale)); color: var(--text-secondary); }
-.hero-summary { text-align: center; max-width: 600px; font-size: calc(14px * var(--type-scale)); line-height: 1.65; color: var(--text-secondary); margin: 28px auto 60px; }
+.hero-summary { text-align: start; max-width: 600px; font-size: calc(14px * var(--type-scale)); line-height: 1.65; color: var(--text-secondary); margin: 28px 0 60px var(--hero-text-inset); }
 .hero-bottom { border: 0; padding-top: 20px; display: flex; justify-content: space-between; font-size: calc(9px * var(--type-scale)); letter-spacing: .13em; }
 @media(min-width: 1001px) {
-  /* Share the title's left edge; keep the list markers outside that text axis. */
-  .hero-title { text-align: left; padding-left: 3.5cqw; }
-  .hero-disciplines { padding-left: 3.5cqw; }
-  .hero-specialties li { display: block; position: relative; }
-  .hero-specialties li::before { position: absolute; left: -20px; top: 0; }
+  .hero-inner { --hero-text-inset: 3.5cqw; }
+  .hero-title { text-align: left; padding-inline-start: var(--hero-text-inset); }
+  .hero-specialties li::before { inset-inline-start: -20px; }
 
   .hero-eyebrow { font-size: clamp(12px, .9cqw, 20px); }
   .hero-location { font-size: clamp(11px, .8cqw, 18px); }
@@ -67,5 +65,5 @@ import portrait from '../assets/portraits/emma-portrait-cutout.png'
   .hero-summary { max-width: 64cqw; font-size: clamp(16px, 1.1cqw, 26px); }
   .hero-bottom { font-size: clamp(11px, .8cqw, 18px); }
 }
-@media(max-width: 1000px) { .hero { padding: 130px 20px 24px; } .hero-title { font-size: calc(8.1vw * var(--type-scale)); } .hero-location { font-size: calc(10px * var(--type-scale)); letter-spacing: .12em; margin: 0 0 16px; } .hero-composition { grid-template-columns: 1fr 1fr; gap: 20px; margin-top: -8px; } .hero-portrait { grid-column: 1 / -1; grid-row: 1; width: 240px; height: auto; margin: auto; } .hero-disciplines { align-self: start; font-size: calc(11px * var(--type-scale)); padding: 0; } .hero-specialties { font-size: calc(13px * var(--type-scale)); gap: 12px; } .hero-specialties li { grid-template-columns: 6px minmax(0, 1fr); column-gap: 8px; } .hero-specialties li::before { width: 6px; height: 6px; } .hero-intro { padding: 0; } .hero-intro > h2 { font-size: calc(23px * var(--type-scale)); } .hero-tagline { font-size: calc(12px * var(--type-scale)); } .hero-work { margin-top: 12px; gap: 12px; } .hero-summary { margin-bottom: 40px; } .hero-bottom { font-size: calc(9px * var(--type-scale)); letter-spacing: .03em; } }
+@media(max-width: 1000px) { .hero { padding: 130px 20px 24px; } .hero-title { font-size: calc(8.1vw * var(--type-scale)); } .hero-location { font-size: calc(10px * var(--type-scale)); letter-spacing: .12em; margin: 0 0 16px; } .hero-composition { grid-template-columns: 1fr 1fr; gap: 20px; margin-top: -8px; } .hero-portrait { grid-column: 1 / -1; grid-row: 1; width: 240px; height: auto; margin: auto; } .hero-disciplines { align-self: start; font-size: calc(11px * var(--type-scale)); padding-bottom: 0; } .hero-specialties { font-size: calc(13px * var(--type-scale)); gap: 12px; } .hero-specialties li::before { width: 6px; height: 6px; } .hero-intro { padding: 0; } .hero-intro > h2 { font-size: calc(23px * var(--type-scale)); } .hero-tagline { font-size: calc(12px * var(--type-scale)); } .hero-work { margin-top: 12px; gap: 12px; } .hero-summary { margin-bottom: 40px; } .hero-bottom { font-size: calc(9px * var(--type-scale)); letter-spacing: .03em; } }
 </style>
