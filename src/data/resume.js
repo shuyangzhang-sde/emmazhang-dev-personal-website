@@ -14,10 +14,11 @@ export const profile = {
   roles: [
     { label: 'AI Engineer', primary: true },
     { label: 'Full-Stack Software Engineer' },
+    { label: 'Front-End Engineer' },
     { label: 'Software Development Engineer' },
   ],
   subtitle:
-    "Across internships and freelance work I've owned the whole path to production: the AI layer, the services behind it, and the cloud infrastructure it runs on.",
+    "Across internships and freelance work I've owned the whole path to production: front-end interfaces, AI agents and RAG, backend and distributed systems, and cloud infrastructure on AWS and Kubernetes.",
   email: 'sz94@illinois.edu',
   location: 'Champaign, IL',
   // Drop the PDF into /public and update this path when ready
@@ -153,18 +154,22 @@ export const sideProjects = [
   {
     "name": "UIUC Housing Search Platform",
     images: [{ src: illinirentHome, alt: 'IlliniRent housing search homepage with a Champaign-Urbana map and listing search', label: 'IlliniRent homepage' }],
-    "descriptor": "Housing search and price-per-bed comparison",
+    "descriptor": "Cross-platform front end for housing search",
     "visualTitle": "Find your place.",
     "visualCaption": "1,100+ FLOOR PLANS / UIUC",
     "description": "Launched a housing search platform serving 500 students who compare 1,100+ Champaign-Urbana floor plans by price per bed across the rental market.",
     "bullets": [
       "Built a Playwright scraping pipeline with geocoding and versioned SQLite snapshots, unifying 580+ properties from many listings into one dataset.",
       "Developed FastAPI APIs serving floor-plan search, filtering, and price-per-bed comparison, deployed on Railway behind a Vercel Next.js frontend.",
-      "Created a Next.js map view with MapLibre showing listings by location, plus Supabase authentication and an admin dashboard for managing listings.",
+      "Built map-based search, filters, and property details with Next.js and a React Native / Expo client, sharing TypeScript API, filter, and design-token packages.",
+      "Integrated Supabase authentication and coordinated Home, Browse, and Map navigation in the Expo client; iOS and physical-device acceptance remain pending.",
       "Gated releases with GitHub Actions CI/CD that runs Playwright end-to-end tests and scraper smoke checks before each Vercel and Railway deploy."
     ],
     "stack": [
       "Next.js",
+      "React Native",
+      "Expo",
+      "TypeScript",
       "FastAPI",
       "Supabase",
       "MapLibre",
@@ -181,6 +186,20 @@ export const sideProjects = [
       },
       { "label": "GitHub", "url": "https://github.com/shuyangzhang-sde/uiuc-housing-serach-website" }
     ]
+  },
+  {
+    "name": "WeatherLens",
+    "descriptor": "Front-end interactions and AI-personalized themes",
+    "visualTitle": "Your cities. One forecast.",
+    "visualCaption": "FRONT-END ENGINEERING / ANDROID",
+    "description": "Built a native Android weather interface with coordinated Today, Forecast, and Cities tabs, live weather data, and user-level AI color themes.",
+    "bullets": [
+      "Coordinated selected-city state across current weather, forecasts, and maps, with per-account persistence and city removal with Undo.",
+      "Integrated OpenWeather current conditions and Open-Meteo hourly and seven-day forecasts with city-local dates and timezones.",
+      "Validated structured Gemini theme colors with fallback defaults, applying a shared user theme across fixed city layouts."
+    ],
+    "stack": ["Java", "Android XML", "Material Components", "SQLite", "REST APIs", "Gemini"],
+    "links": [{ "label": "GitHub", "url": "https://github.com/shuyangzhang-sde/WeatherLens" }]
   },
   {
     "name": "AI Email Copilot for Cross-Border E-Commerce",
@@ -226,6 +245,10 @@ export const skills = [
       "TypeScript/JavaScript",
       "React.js",
       "Next.js",
+      "React Native",
+      "Expo",
+      "Android XML",
+      "Material Components",
       "React",
       "Vue.js",
       "HTML",
