@@ -91,9 +91,6 @@ const projectGroups = projectCategories.map(category => ({
 
 <style scoped>
 #projects > .section-inner { max-width: 1440px; }
-#projects .section-divider h2 { font-size: calc(var(--section-heading-size) - 2px); }
-#projects .section-kicker { font-size: calc(10px * var(--type-scale)); }
-#projects .divider-description { font-size: calc(13px * var(--type-scale)); }
 .project-status { font-size: calc(12px * var(--type-scale)); }
 .project-groups { display: grid; grid-template-columns: minmax(0, 1fr); gap: 56px; }
 .project-group { min-width: 0; }

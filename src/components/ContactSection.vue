@@ -46,7 +46,8 @@ import { profile } from '../data/resume.js'
 }
 
 .contact-subtitle {
-  font-size: calc(19px * var(--type-scale));
+  font-size: calc(15px * var(--type-scale));
+  line-height: 1.75;
   margin-top: 14px;
   color: rgba(0, 0, 0, 0.65);
 }
@@ -56,6 +57,7 @@ import { profile } from '../data/resume.js'
 }
 
 .contact-block .btn-ink {
+  font-size: calc(14px * var(--type-scale));
   background: var(--primary);
   color: #fff;
 }
@@ -71,7 +73,7 @@ import { profile } from '../data/resume.js'
 .contact-links a:hover { color: var(--accent-ink); }
 .contact-block .btn-ink:hover { background: var(--accent-ink); }
 .contact-links a {
-  font-size: calc(16px * var(--type-scale));
+  font-size: calc(13px * var(--type-scale));
   font-weight: 600;
   color: #000;
 }

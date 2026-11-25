@@ -12,7 +12,7 @@
 :root {
   color-scheme: light;
   --type-scale: 1.15;
-  --section-heading-size: calc(clamp(30px, 3.5vw, 42px) * var(--type-scale));
+  --section-heading-size: calc(clamp(30px, 3vw, 38px) * var(--type-scale));
   --primary: #304e9b;
   --accent: #7185e8;
   --accent-ink: #4357b5;

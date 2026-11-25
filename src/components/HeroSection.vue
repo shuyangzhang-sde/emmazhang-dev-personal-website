@@ -47,11 +47,11 @@ import portrait from '../assets/portraits/emma-portrait-cutout.png'
 .hero-socials a { display: inline-flex; align-items: center; gap: 10px; padding-block: 8px; color: var(--accent-ink); font-size: calc(13px * var(--type-scale)); font-weight: 600; }
 .hero-portrait { justify-self: center; width: 100%; max-width: 340px; height: auto; object-fit: contain; }
 .hero-details { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); border-top: 1px solid var(--grey-line); margin-top: 44px; padding-top: 30px; }
-.hero-greeting, .hero-caption { font-size: calc(10px * var(--type-scale)); color: var(--text-secondary); letter-spacing: .14em; }
-.hero-intro h2 { font-size: calc(clamp(28px, 3vw, 36px) * var(--type-scale)); font-weight: 750; letter-spacing: -.04em; line-height: 1.15; margin: 10px 0 18px; }
+.hero-greeting, .hero-caption { font-size: calc(11px * var(--type-scale)); color: var(--text-secondary); letter-spacing: .12em; }
+.hero-intro h2 { font-size: calc(clamp(25px, 2.5vw, 28px) * var(--type-scale)); font-weight: 700; letter-spacing: -.035em; line-height: 1.2; margin: 10px 0 16px; }
 .hero-details :deep(.hero-education) { padding: 0; margin: 0; }
-.hero-details :deep(.education-school) { max-width: 440px; font-size: calc(21px * var(--type-scale)); line-height: 1.35; text-wrap: initial; }
-.hero-bottom { border-top: 1px solid var(--grey-line); margin-top: 36px; padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font-size: calc(10px * var(--type-scale)); letter-spacing: .12em; }
+.hero-details :deep(.education-school) { max-width: 440px; font-size: calc(18px * var(--type-scale)); line-height: 1.4; text-wrap: initial; }
+.hero-bottom { border-top: 1px solid var(--grey-line); margin-top: 36px; padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font-size: calc(11px * var(--type-scale)); letter-spacing: .1em; }
 @media(max-width:734px) {
   .hero { padding: 120px 20px 24px; }
   .hero-composition { grid-template-columns: minmax(0, 1fr); gap: 28px; }
@@ -59,7 +59,6 @@ import portrait from '../assets/portraits/emma-portrait-cutout.png'
   .hero-summary { font-size: 18px; margin-top: 20px; }
   .hero-portrait { max-width: 240px; }
   .hero-details { grid-template-columns: minmax(0, 1fr); gap: 30px; margin-top: 30px; padding-top: 26px; }
-  .hero-details :deep(.education-school) { font-size: calc(20px * var(--type-scale)); }
-  .hero-bottom { font-size: calc(9px * var(--type-scale)); }
+  .hero-details :deep(.education-school) { font-size: calc(18px * var(--type-scale)); }
 }
 </style>

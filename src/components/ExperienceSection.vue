@@ -28,15 +28,17 @@ const rolesOf = (job) => job.roles ?? [{ role: job.role, bullets: job.bullets, s
 #experience { background: var(--surface); }
 .experience-entry { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 48px; padding: 48px 0 58px; border: 0; }
 .entry-number { display: block; color: var(--text-secondary); font-size: calc(11px * var(--type-scale)); margin-bottom: 24px; }
-.experience-meta h3 { font-size: calc(25px * var(--type-scale)); line-height: 1.15; margin-bottom: 14px; }
+.experience-meta h3 { font-size: calc(20px * var(--type-scale)); font-weight: 650; line-height: 1.3; margin-bottom: 12px; letter-spacing: -.025em; }
 .company-link { color: inherit; text-decoration: none; transition: color .2s ease; }
 .company-link:hover, .company-link:focus-visible { color: var(--accent-ink); }
 .experience-meta p { color: var(--text-secondary); font-size: calc(13px * var(--type-scale)); margin-top: 7px; }
+.experience-meta p strong { font-weight: 500; }
 .experience-role + .experience-role { border: 0; margin-top: 30px; padding-top: 30px; }
-.experience-role h4 { font-size: calc(25px * var(--type-scale)); font-weight: 600; margin: 0; line-height: 1.2; letter-spacing: -.035em; }
+.experience-role h4 { font-size: calc(22px * var(--type-scale)); font-weight: 700; margin: 0; line-height: 1.3; letter-spacing: -.025em; }
 .role-dates { font-size: calc(13px * var(--type-scale)); color: var(--text-secondary); margin-top: 8px; }
-.experience-role ul { padding-left: 18px; margin-top: 24px; color: var(--text-secondary); font-size: calc(15px * var(--type-scale)); line-height: 1.7; }
+.experience-role ul { padding-left: 18px; margin-top: 20px; color: var(--text-secondary); font-size: calc(14px * var(--type-scale)); line-height: 1.8; }
 .experience-role li + li { margin-top: 12px; }
 .job-stack { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px; }
+.job-stack .chip { font-size: calc(11px * var(--type-scale)); font-weight: 500; }
 @media(max-width:734px) { .experience-entry { grid-template-columns: 1fr; gap: 28px; } .entry-number { margin-bottom: 12px; } }
 </style>

@@ -38,7 +38,7 @@ import { skills } from '../data/resume.js'
 .toolbox-index { color: var(--text-tertiary); font-size: calc(11px * var(--type-scale)); font-weight: 400; letter-spacing: .1em; }
 .toolbox-subgroups { display: grid; gap: 16px; min-width: 0; }
 .toolbox-subgroup { display: grid; grid-template-columns: 150px minmax(0, 1fr); align-items: baseline; gap: 18px; }
-.toolbox-subgroup h4 { margin: 0; font-size: calc(12px * var(--type-scale)); font-weight: 500; color: var(--text-tertiary); line-height: 1.9; }
+.toolbox-subgroup h4 { margin: 0; font-size: calc(12px * var(--type-scale)); font-weight: 600; color: var(--text-secondary); line-height: 1.9; }
 .toolbox-items { display: flex; flex-wrap: wrap; list-style: none; padding: 0; gap: 5px 0; }
 .toolbox-items li { display: inline; color: var(--text-secondary); font-size: calc(14px * var(--type-scale)); line-height: 1.9; letter-spacing: 0; }
 .toolbox-items li:not(:last-child)::after { content: '·'; display: inline-block; color: var(--accent); margin: 0 9px; }
