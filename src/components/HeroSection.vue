@@ -1,101 +1,65 @@
 <script setup>
-import { onMounted, onUnmounted, ref } from 'vue'
 import EducationSection from './EducationSection.vue'
+import ResumeText from './ResumeText.vue'
 import { profile } from '../data/resume.js'
 import portrait from '../assets/portraits/emma-portrait-cutout.png'
-
-const disciplines = ref(null)
-const workLink = ref(null)
-const summary = ref(null)
-let resizeObserver
-
-function alignDisciplines() {
-  const firstLetter = document.createRange()
-  firstLetter.setStart(summary.value.firstChild, 0)
-  firstLetter.setEnd(summary.value.firstChild, 1)
-  const summaryLeft = firstLetter.getBoundingClientRect().left
-  const disciplinesLeft = disciplines.value.getBoundingClientRect().left
-  const workInset = workLink.value.offsetLeft
-  disciplines.value.style.setProperty('--disciplines-shift', `${summaryLeft - disciplinesLeft - workInset}px`)
-}
-
-onMounted(() => {
-  resizeObserver = new ResizeObserver(alignDisciplines)
-  resizeObserver.observe(summary.value)
-  resizeObserver.observe(summary.value.parentElement)
-  document.fonts.addEventListener('loadingdone', alignDisciplines)
-  alignDisciplines()
-})
-
-onUnmounted(() => {
-  resizeObserver?.disconnect()
-  document.fonts.removeEventListener('loadingdone', alignDisciplines)
-})
 </script>
 
 <template>
   <header id="top" class="hero">
     <div class="hero-inner">
-      <p class="hero-eyebrow">PERSONAL PORTFOLIO / SOFTWARE & AI</p>
-      <h1 class="hero-title">Software Engineer</h1>
       <div class="hero-composition">
-        <div ref="disciplines" class="hero-disciplines">
-          <ul class="hero-specialties"><li>AI Engineer</li><li>Full Stack Development</li><li>Backend Development</li><li>Cloud Infrastructure</li></ul>
-          <a href="#projects" ref="workLink" class="hero-work">Explore my work <span aria-hidden="true">↘</span></a>
+        <div class="hero-copy">
+          <h1 class="hero-title">Software Engineer</h1>
+          <p class="hero-summary"><ResumeText :text="profile.subtitle" /></p>
+          <div class="hero-socials" aria-label="Social profiles">
+            <a v-for="link in profile.links" :key="link.label" :href="link.url" target="_blank" rel="noopener noreferrer">{{ link.label }} <span aria-hidden="true">↗</span></a>
+          </div>
         </div>
         <img class="hero-portrait" :src="portrait" alt="Illustrated portrait of Shuyang Zhang in a blue shirt" width="832" height="976" fetchpriority="high" />
-        <div class="hero-intro"><p class="hero-location">OPEN TO RELOCATE ACROSS THE U.S.</p><EducationSection /><p class="hero-greeting">HEY, I'M</p><h2>{{ profile.name }}</h2><p class="hero-tagline">{{ profile.tagline }}</p></div>
       </div>
-      <p ref="summary" class="hero-summary">{{ profile.subtitle }}</p>
-      <div class="hero-bottom"><span>FROM IDEA TO PRODUCTION</span><a href="#experience">SCROLL TO EXPLORE ↓</a></div>
+      <div class="hero-details">
+        <div class="hero-intro">
+          <p class="hero-greeting">HEY, I'M</p>
+          <h2>{{ profile.name }}</h2>
+          <p class="hero-caption">FROM IDEA TO PRODUCTION</p>
+        </div>
+        <EducationSection />
+      </div>
+      <div class="hero-bottom"><span>BACKEND / AI / FRONTEND</span><a href="#experience">SCROLL TO EXPLORE <span aria-hidden="true">↓</span></a></div>
     </div>
   </header>
 </template>
 
 <style scoped>
-.hero { --title-color: #d47763; --marker-color: #ed927e; background: var(--hero-ground); padding: 155px clamp(20px, 2.5vw, 80px) 32px; }
-.hero-inner { width: 100%; max-width: none; margin: auto; container-type: inline-size; }
-.hero-eyebrow::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--coral); margin-right: 10px; }
-.hero-eyebrow { font-size: calc(11px * var(--type-scale)); letter-spacing: .12em; margin-bottom: 12px; }
-.hero-title { color: var(--title-color); font-family: var(--font-sans); font-size: calc(9.75cqw * var(--type-scale)); font-weight: 750; line-height: 1.08; letter-spacing: -.045em; word-spacing: .06em; text-align: center; position: relative; z-index: 1; }
-.hero-location { text-align: left; font-size: calc(10px * var(--type-scale)); letter-spacing: .18em; margin: 0 0 16px; }
-.hero-composition { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 26cqw) minmax(0, 1fr); gap: clamp(20px, 2cqw, 48px); align-items: end; margin: -1.8cqw auto 0; max-width: none; }
-.hero-portrait { align-self: end; width: 100%; height: auto; object-fit: contain; }
-.hero-specialties, .hero-work { transform: translateX(var(--disciplines-shift, 0px)); }
-.hero-specialties { display: grid; gap: 14px; list-style: none; padding: 0; color: var(--primary); font-size: calc(16px * var(--type-scale)); font-weight: 650; line-height: 1.5; letter-spacing: -.015em; }
-.hero-specialties li { display: grid; grid-template-columns: 8px minmax(0, 1fr); align-items: baseline; column-gap: 12px; }
-.hero-specialties li::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--marker-color); align-self: start; margin-top: .56em; }
-.hero-disciplines { position: relative; z-index: 1; font-size: calc(12px * var(--type-scale)); font-weight: 600; line-height: 1.9; padding-bottom: 16px; }
-.hero-work { color: var(--accent-ink); display: inline-flex; gap: 28px; border: 0; margin-top: 28px; padding-bottom: 5px; }
-.hero-intro { align-self: end; padding-top: 24px; padding-bottom: 16px; }
-.hero-intro :deep(.hero-education) { padding-bottom: 0; margin-bottom: 22px; }
-.hero-intro :deep(.education-university) { max-width: none; }
-.hero-greeting { font-size: calc(11px * var(--type-scale)); color: var(--text-secondary); }
-.hero-intro > h2 { font-size: calc(28px * var(--type-scale)); font-weight: 750; letter-spacing: -.035em; line-height: 1.2; margin: 5px 0 10px; }
-.hero-tagline { max-width: 30ch; font-size: calc(14px * var(--type-scale)); color: var(--text-secondary); }
-.hero-summary { text-align: center; max-width: 600px; font-size: calc(14px * var(--type-scale)); line-height: 1.65; color: var(--text-secondary); margin: 28px auto 60px; }
-.hero-bottom { border: 0; padding-top: 20px; display: flex; justify-content: space-between; font-size: calc(9px * var(--type-scale)); letter-spacing: .13em; }
-@media(min-width: 1001px) {
-  /* Share the title's left edge; keep the list markers outside that text axis. */
-  .hero-title { text-align: left; padding-left: 3.5cqw; }
-  .hero-disciplines { padding-left: 3.5cqw; }
-  .hero-specialties li { display: block; position: relative; }
-  .hero-specialties li::before { position: absolute; left: -20px; top: 0; }
-
-  .hero-eyebrow { font-size: clamp(12px, .9cqw, 20px); }
-  .hero-location { font-size: clamp(11px, .8cqw, 18px); }
-  .hero-specialties { font-size: clamp(18px, 1.4cqw, 32px); gap: 1cqw; }
-  .hero-work { font-size: clamp(14px, 1cqw, 23px); }
-  .hero-intro { padding-top: 1.7cqw; padding-bottom: 1.1cqw; }
-  .hero-intro > h2 { font-size: clamp(30px, 2.4cqw, 56px); }
-  .hero-greeting { font-size: clamp(12px, .85cqw, 20px); }
-  .hero-tagline { font-size: clamp(16px, 1.15cqw, 27px); max-width: none; }
-  .hero-intro :deep(.education-label) { font-size: clamp(11px, .8cqw, 18px); }
-  .hero-intro :deep(.education-school) { font-size: clamp(34px, 2.6cqw, 62px); }
-  .hero-intro :deep(.education-university), .hero-intro :deep(.education-degree) { font-size: clamp(14px, 1.05cqw, 25px); }
-  .hero-intro :deep(.education-date) { font-size: clamp(13px, 1cqw, 23px); }
-  .hero-summary { max-width: 64cqw; font-size: clamp(16px, 1.1cqw, 26px); }
-  .hero-bottom { font-size: clamp(11px, .8cqw, 18px); }
+.hero {
+  --title-color: #d47763;
+  background: var(--hero-ground);
+  padding: 145px var(--page-gutter) 32px;
 }
-@media(max-width: 1000px) { .hero { padding: 130px 20px 24px; } .hero-title { font-size: calc(8.1vw * var(--type-scale)); } .hero-location { font-size: calc(10px * var(--type-scale)); letter-spacing: .12em; margin: 0 0 16px; } .hero-composition { grid-template-columns: 1fr 1fr; gap: 20px; margin-top: -8px; } .hero-portrait { grid-column: 1 / -1; grid-row: 1; width: 240px; height: auto; margin: auto; } .hero-disciplines { align-self: start; font-size: calc(11px * var(--type-scale)); padding: 0; } .hero-specialties { font-size: calc(13px * var(--type-scale)); gap: 12px; } .hero-specialties li { grid-template-columns: 6px minmax(0, 1fr); column-gap: 8px; } .hero-specialties li::before { width: 6px; height: 6px; } .hero-intro { padding: 0; } .hero-intro > h2 { font-size: calc(23px * var(--type-scale)); } .hero-tagline { font-size: calc(12px * var(--type-scale)); } .hero-work { margin-left: 14px; margin-top: 12px; gap: 12px; } .hero-summary { margin-bottom: 40px; } .hero-bottom { font-size: calc(9px * var(--type-scale)); letter-spacing: .03em; } }
+.hero-inner { width: 100%; max-width: 1200px; margin: auto; }
+.hero-composition { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
+.hero-copy { min-width: 0; }
+.hero-title { color: var(--title-color); font-size: clamp(38px, 4.3vw, 56px); font-weight: 700; line-height: 1.12; letter-spacing: -.045em; }
+.hero-summary { max-width: 52ch; font-size: clamp(19px, 1.8vw, 23px); line-height: 1.75; color: var(--text-secondary); margin-top: 24px; }
+.hero-summary :deep(strong) { color: var(--text); }
+.hero-socials { display: flex; flex-wrap: wrap; gap: 12px 24px; margin-top: 22px; }
+.hero-socials a { display: inline-flex; align-items: center; gap: 10px; padding-block: 8px; color: var(--accent-ink); font-size: calc(13px * var(--type-scale)); font-weight: 600; }
+.hero-portrait { justify-self: center; width: 100%; max-width: 340px; height: auto; object-fit: contain; }
+.hero-details { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); border-top: 1px solid var(--grey-line); margin-top: 44px; padding-top: 30px; }
+.hero-greeting, .hero-caption { font-size: calc(10px * var(--type-scale)); color: var(--text-secondary); letter-spacing: .14em; }
+.hero-intro h2 { font-size: calc(clamp(28px, 3vw, 36px) * var(--type-scale)); font-weight: 750; letter-spacing: -.04em; line-height: 1.15; margin: 10px 0 18px; }
+.hero-details :deep(.hero-education) { padding: 0; margin: 0; }
+.hero-details :deep(.education-school) { max-width: 440px; font-size: calc(21px * var(--type-scale)); line-height: 1.35; text-wrap: initial; }
+.hero-bottom { border-top: 1px solid var(--grey-line); margin-top: 36px; padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font-size: calc(10px * var(--type-scale)); letter-spacing: .12em; }
+@media(max-width:734px) {
+  .hero { padding: 120px 20px 24px; }
+  .hero-composition { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .hero-title { font-size: clamp(34px, 7vw, 46px); }
+  .hero-summary { font-size: 18px; margin-top: 20px; }
+  .hero-portrait { max-width: 240px; }
+  .hero-details { grid-template-columns: minmax(0, 1fr); gap: 30px; margin-top: 30px; padding-top: 26px; }
+  .hero-details :deep(.education-school) { font-size: calc(20px * var(--type-scale)); }
+  .hero-bottom { font-size: calc(9px * var(--type-scale)); }
+}
 </style>

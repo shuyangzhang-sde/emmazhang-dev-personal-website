@@ -1,5 +1,4 @@
 import analyticsOverview from '../assets/projects/analytics-overview.jpg'
-import analyticsActivity from '../assets/projects/analytics-activity.jpg'
 import illinirentHome from '../assets/projects/illinirent-home.jpg'
 import mailpilotOverview from '../assets/projects/mailpilot-overview.png'
 
@@ -18,7 +17,7 @@ export const profile = {
     { label: 'Software Development Engineer' },
   ],
   subtitle:
-    "Across internships and freelance work I've owned the whole path to production: front-end interfaces, AI agents and RAG, backend and distributed systems, and cloud infrastructure on AWS and Kubernetes.",
+    "With 3+ years of experience, I've built backend and distributed systems, AI agents and RAG pipelines, and front-end interfaces, with cloud infrastructure on AWS and Kubernetes supporting the path to production.",
   email: 'sz94@illinois.edu',
   location: 'Champaign, IL',
   // Drop the PDF into /public and update this path when ready
@@ -117,12 +116,18 @@ export const experience = [
   }
 ]
 
+export const projectCategories = [
+  { id: 'full-stack-backend', title: 'Full Stack & Backend' },
+  { id: 'ai', title: 'AI & RAG' },
+  { id: 'mobile', title: 'Mobile Applications' },
+]
+
 export const sideProjects = [
   {
     "name": "Real-Time Analytics Dashboard",
+    "category": "full-stack-backend",
     images: [
       { src: analyticsOverview, alt: 'Analytics dashboard showing live metrics and the latest Wikimedia changes', label: 'Live overview' },
-      { src: analyticsActivity, alt: 'Analytics activity chart with changes per minute, busiest sites, and bot activity', label: 'Activity breakdown' },
     ],
     "descriptor": "Live event streaming and historical analytics",
     "visualTitle": "Every event. In real time.",
@@ -153,6 +158,7 @@ export const sideProjects = [
   },
   {
     "name": "UIUC Housing Search Platform",
+    "category": "full-stack-backend",
     images: [{ src: illinirentHome, alt: 'IlliniRent housing search homepage with a Champaign-Urbana map and listing search', label: 'IlliniRent homepage' }],
     "descriptor": "Cross-platform front end for housing search",
     "visualTitle": "Find your place.",
@@ -161,14 +167,11 @@ export const sideProjects = [
     "bullets": [
       "Built a Playwright scraping pipeline with geocoding and versioned SQLite snapshots, unifying 580+ properties from many listings into one dataset.",
       "Developed FastAPI APIs serving floor-plan search, filtering, and price-per-bed comparison, deployed on Railway behind a Vercel Next.js frontend.",
-      "Built map-based search, filters, and property details with Next.js and a React Native / Expo client, sharing TypeScript API, filter, and design-token packages.",
-      "Integrated Supabase authentication and coordinated Home, Browse, and Map navigation in the Expo client; iOS and physical-device acceptance remain pending.",
+      "Created a Next.js map view with MapLibre showing listings by location, plus Supabase authentication and an admin dashboard for managing listings.",
       "Gated releases with GitHub Actions CI/CD that runs Playwright end-to-end tests and scraper smoke checks before each Vercel and Railway deploy."
     ],
     "stack": [
       "Next.js",
-      "React Native",
-      "Expo",
       "TypeScript",
       "FastAPI",
       "Supabase",
@@ -188,8 +191,8 @@ export const sideProjects = [
     ]
   },
   {
-    "name": "WeatherLens",
-    "descriptor": "Front-end interactions and AI-personalized themes",
+    "name": "Android Weather App with AI Themes",
+    "category": "mobile",
     "visualTitle": "Your cities. One forecast.",
     "visualCaption": "FRONT-END ENGINEERING / ANDROID",
     "description": "Built a native Android weather interface with coordinated Today, Forecast, and Cities tabs, live weather data, and user-level AI color themes.",
@@ -202,9 +205,9 @@ export const sideProjects = [
     "links": [{ "label": "GitHub", "url": "https://github.com/shuyangzhang-sde/WeatherLens" }]
   },
   {
-    "name": "AI Email Copilot for Cross-Border E-Commerce",
+    "name": "RAG-powered Email Drafting Copilot for Cross-Border E-Commerce sales",
+    "category": "ai",
     images: [{ src: mailpilotOverview, alt: 'MailPilot project overview describing its multilingual AI email assistant and architecture documentation', label: 'MailPilot overview' }],
-    "descriptor": "RAG-powered email drafting for cross-border sales",
     "visualTitle": "From documents. To drafts.",
     "visualCaption": "RAG / EMAIL COPILOT",
     "description": "Built a FastAPI, LangChain, and RAG copilot that drafts emails for cross-border sales reps from product data, cutting quote preparation time by 60%.",
@@ -237,90 +240,222 @@ export const sideProjects = [
 export const skills = [
   {
     "category": "Languages & Frontend",
-    "items": [
-      "Java",
-      "Python",
-      "C#",
-      "C++",
-      "TypeScript/JavaScript",
-      "React.js",
-      "Next.js",
-      "React Native",
-      "Expo",
-      "Android XML",
-      "Material Components",
-      "React",
-      "Vue.js",
-      "HTML",
-      "CSS",
-      "Angular"
+    "subgroups": [
+      {
+        "label": "Languages",
+        "items": [
+          "Java",
+          "Python",
+          "C#",
+          "C++",
+          "TypeScript/JavaScript",
+          "C"
+        ]
+      },
+      {
+        "label": "Web Frontend",
+        "items": [
+          "React.js",
+          "Next.js",
+          "React",
+          "Vue.js",
+          "HTML",
+          "CSS/CSS3",
+          "Angular",
+          "Tailwind CSS"
+        ]
+      },
+      {
+        "label": "Mobile",
+        "items": [
+          "React Native",
+          "Expo",
+          "Android XML",
+          "Material Components"
+        ]
+      }
     ]
   },
   {
     "category": "Backend & Data",
-    "items": [
-      "Spring Boot",
-      "Spring Cloud",
-      "Node.js/Express",
-      "FastAPI/Flask",
-      "Django",
-      "REST",
-      "gRPC",
-      "WebSockets",
-      "Kafka/Flink",
-      "JWT",
-      "MySQL",
-      "SQL/NoSQL schema design",
-      "PostgreSQL",
-      "MongoDB",
-      "Redis",
-      "DynamoDB",
-      "ElasticSearch"
+    "subgroups": [
+      {
+        "label": "Frameworks",
+        "items": [
+          "Spring Boot",
+          "Spring Cloud",
+          "Node.js/Express",
+          "FastAPI/Flask",
+          "Django"
+        ]
+      },
+      {
+        "label": "APIs & Messaging",
+        "items": [
+          "REST/RESTful APIs",
+          "gRPC",
+          "WebSockets",
+          "Kafka/Flink",
+          "JWT",
+          "OpenFeign",
+          "RocketMQ"
+        ]
+      },
+      {
+        "label": "Databases & Search",
+        "items": [
+          "MySQL",
+          "SQL/NoSQL schema design",
+          "PostgreSQL",
+          "MongoDB",
+          "Redis",
+          "DynamoDB",
+          "ElasticSearch",
+          "SQLite",
+          "OpenSearch",
+          "pgvector",
+          "Supabase"
+        ]
+      }
     ]
   },
   {
     "category": "AI & Creative Tools",
-    "items": [
-      "RAG",
-      "LangChain",
-      "LangGraph",
-      "LangSmith",
-      "MLOps",
-      "Codex",
-      "Claude Code",
-      "Figma",
-      "Open Design",
-      "Stitch"
+    "subgroups": [
+      {
+        "label": "AI Frameworks",
+        "items": [
+          "RAG",
+          "LangChain",
+          "LangGraph",
+          "Haystack"
+        ]
+      },
+      {
+        "label": "Retrieval & Knowledge",
+        "items": [
+          "Qdrant",
+          "Cohere",
+          "Vector Search",
+          "Embeddings",
+          "Information Retrieval"
+        ]
+      },
+      {
+        "label": "Agents & Orchestration",
+        "items": [
+          "MCP",
+          "Tool Calling",
+          "Guardrails",
+          "Human-in-the-Loop",
+          "LiveKit"
+        ]
+      },
+      {
+        "label": "Models & Documents",
+        "items": [
+          "AWS Bedrock",
+          "Docling",
+          "NLP"
+        ]
+      },
+      {
+        "label": "AI Operations",
+        "items": [
+          "LangSmith",
+          "MLOps"
+        ]
+      },
+      {
+        "label": "AI Coding",
+        "items": [
+          "Codex",
+          "Claude Code"
+        ]
+      },
+      {
+        "label": "Design",
+        "items": [
+          "Figma",
+          "Open Design",
+          "Stitch"
+        ]
+      }
     ]
   },
   {
     "category": "Cloud & Engineering",
-    "items": [
-      "AWS",
-      "EC2",
-      "S3",
-      "Lambda",
-      "DynamoDB",
-      "RDS",
-      "SES",
-      "CloudWatch",
-      "EventBridge",
-      "AutoScaling",
-      "CloudFormation/CDK",
-      "Azure",
-      "Docker",
-      "Kubernetes",
-      "Git",
-      "GitHub Actions",
-      "CI/CD",
-      "Prometheus",
-      "Grafana",
-      "Agile/Scrum",
-      "Distributed Systems Design",
-      "Code Review",
-      "Unit Testing (JUnit, Mockito)",
-      "Integration Testing",
-      "SDLC"
+    "subgroups": [
+      {
+        "label": "Cloud Platforms",
+        "items": [
+          "AWS",
+          "Azure",
+          "GCP"
+        ]
+      },
+      {
+        "label": "AWS Services",
+        "items": [
+          "EC2",
+          "S3",
+          "Lambda",
+          "DynamoDB",
+          "RDS",
+          "SES",
+          "CloudWatch",
+          "EventBridge",
+          "AutoScaling",
+          "CloudFormation/CDK",
+          "EKS",
+          "API Gateway"
+        ]
+      },
+      {
+        "label": "Infrastructure",
+        "items": [
+          "Docker",
+          "Kubernetes",
+          "Terraform"
+        ]
+      },
+      {
+        "label": "Delivery",
+        "items": [
+          "Git",
+          "GitHub Actions",
+          "CI/CD"
+        ]
+      },
+      {
+        "label": "Observability",
+        "items": [
+          "Prometheus",
+          "Grafana"
+        ]
+      },
+      {
+        "label": "Testing",
+        "items": [
+          "Unit Testing (JUnit, Mockito)",
+          "Integration Testing",
+          "Vitest",
+          "Supertest",
+          "Playwright"
+        ]
+      },
+      {
+        "label": "Engineering Practices",
+        "items": [
+          "Agile/Scrum",
+          "Distributed Systems Design",
+          "Code Review",
+          "Software Development Life Cycle (SDLC)",
+          "Data Structures & Algorithms",
+          "Automation",
+          "Self-healing Systems"
+        ]
+      }
     ]
   }
 ]
@@ -330,6 +465,6 @@ export const education = {
   school: 'University of Illinois Urbana-Champaign',
   degree: 'B.S. in General Mathematics',
   minor: 'Minor in Computer Science',
-  graduation: 'Aug 2024 – Dec 2026 (Expected)',
+  graduation: 'Aug 2024 – Dec 2026',
   location: 'Champaign, IL',
 }

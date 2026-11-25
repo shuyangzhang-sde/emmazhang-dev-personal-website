@@ -3,10 +3,10 @@ import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { profile } from '../data/resume.js'
 
 const links = [
+  { label: 'Education', href: '#education' },
   { label: 'Experience', href: '#experience' },
   { label: 'Projects', href: '#projects' },
   { label: 'Skills', href: '#skills' },
-  { label: 'Education', href: '#education' },
   { label: 'Contact', href: '#contact' },
 ]
 

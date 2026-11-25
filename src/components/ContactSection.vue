@@ -40,7 +40,7 @@ import { profile } from '../data/resume.js'
 }
 
 .contact-title {
-  font-size: calc(clamp(36px, 6vw, 60px) * var(--type-scale));
+  font-size: var(--section-heading-size);
   font-weight: 700;
   letter-spacing: -0.02em;
 }

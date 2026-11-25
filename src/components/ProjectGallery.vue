@@ -2,7 +2,7 @@
 import { computed, ref } from 'vue'
 const props = defineProps({ images: { type: Array, required: true }, name: { type: String, required: true } })
 const index = ref(0)
-const current = computed(() => props.images[index.value])
+const current = computed(() => props.images[Math.min(index.value, props.images.length - 1)])
 function move(direction) {
   if (props.images.length > 1) index.value = (index.value + direction + props.images.length) % props.images.length
 }
@@ -24,8 +24,8 @@ function move(direction) {
 </template>
 
 <style scoped>
-.project-gallery { aspect-ratio: 2 / 1; position: relative; overflow: hidden; margin: 0 0 24px; }
-.gallery-image { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+.project-gallery { position: relative; margin: 0 0 24px; }
+.gallery-image { display: block; width: 100%; height: auto; }
 .gallery-arrow { position: absolute; top: 50%; transform: translateY(-50%); display: grid; place-items: center; width: 38px; height: 42px; padding: 0; border: 0; border-radius: 50%; background: #fffffff2; color: var(--primary); box-shadow: 0 2px 12px #26344914; cursor: pointer; transition: background .2s ease, color .2s ease; }
 .gallery-arrow:hover { background: var(--accent-ink); color: #fff; }
 .gallery-arrow--prev { left: 8px; }

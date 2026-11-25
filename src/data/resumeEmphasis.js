@@ -1,6 +1,8 @@
 // Bold ranges transcribed from EMMA_ZHANG_Resume_NG_Dec2026.docx.
 // Offsets apply to the exact résumé sentences; other text renders normally.
 export const resumeEmphasis = {
+  "Created a Next.js map view with MapLibre showing listings by location for user engagement.": [[10, 17], [32, 40]],
+  "With 3+ years of experience, I've built backend and distributed systems, AI agents and RAG pipelines, and front-end interfaces, with cloud infrastructure on AWS and Kubernetes supporting the path to production.": [[5, 27], [40, 71], [73, 100], [106, 126], [133, 175]],
   "Built a RAG-powered LiveKit voice sales agent handling 1,000+ calls/month, with AI-to-human handoff and post-call coaching insights for 20+ reps.": [
     [
       20,
@@ -267,16 +269,7 @@ export const resumeEmphasis = {
       119
     ]
   ],
-  "Designed an indexed PostgreSQL schema with SQL aggregation queries over 5M+ event records, cutting average query latency by 50% for dashboards.": [
-    [
-      20,
-      30
-    ],
-    [
-      43,
-      46
-    ]
-  ],
+  "Designed an indexed PostgreSQL schema with SQL aggregation queries over 5M+ event records, cutting average query latency by 50% for dashboards.": [[20, 30], [43, 46]],
   "Containerized the dashboard stack with Docker and deployed it on Kubernetes, auto-scaling WebSocket workers to support 1,000+ concurrent users.": [
     [
       39,

@@ -8,7 +8,7 @@ const rolesOf = (job) => job.roles ?? [{ role: job.role, bullets: job.bullets, s
 <template>
   <section id="experience" class="section section--alt">
     <div class="section-inner">
-      <div class="experience-divider" v-reveal>
+      <div class="section-divider" v-reveal>
         <p class="section-kicker">01 / INDUSTRY EXPERIENCE</p>
         <h2>Work</h2>
         <p class="divider-description"><strong>Engineering in the real world.</strong> From AI-powered products to scalable services: the teams, challenges, and work behind my experience.</p>
@@ -25,10 +25,7 @@ const rolesOf = (job) => job.roles ?? [{ role: job.role, bullets: job.bullets, s
 </template>
 
 <style scoped>
-.experience-divider { text-align: center; padding: 32px 0 72px; }
-.experience-divider h2 { font-family: var(--font-sans); font-weight: 750; font-size: calc(clamp(88px, 17vw, 210px) * var(--type-scale)); letter-spacing: -.055em; line-height: 1.05; margin: 22px 0; }
-.divider-description { max-width: 640px; margin: auto; color: var(--text-secondary); font-size: calc(clamp(16px, 2vw, 20px) * var(--type-scale)); }
-.divider-description strong { color: var(--text); font-weight: 500; }
+#experience { background: var(--surface); }
 .experience-entry { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 48px; padding: 48px 0 58px; border: 0; }
 .entry-number { display: block; color: var(--text-secondary); font-size: calc(11px * var(--type-scale)); margin-bottom: 24px; }
 .experience-meta h3 { font-size: calc(25px * var(--type-scale)); line-height: 1.15; margin-bottom: 14px; }
@@ -41,5 +38,5 @@ const rolesOf = (job) => job.roles ?? [{ role: job.role, bullets: job.bullets, s
 .experience-role ul { padding-left: 18px; margin-top: 24px; color: var(--text-secondary); font-size: calc(15px * var(--type-scale)); line-height: 1.7; }
 .experience-role li + li { margin-top: 12px; }
 .job-stack { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px; }
-@media(max-width:734px) { .experience-divider { padding: 20px 0 65px; } .experience-entry { grid-template-columns: 1fr; gap: 28px; } .entry-number { margin-bottom: 12px; } }
+@media(max-width:734px) { .experience-entry { grid-template-columns: 1fr; gap: 28px; } .entry-number { margin-bottom: 12px; } }
 </style>
