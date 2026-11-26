@@ -59,7 +59,7 @@ export const experience = [
   {
     "company": "Tang Matcha House",
     "descriptor": "Matcha café ordering platform",
-    "role": "Freelance Software Engineer",
+    "role": "Software Development Intern",
     "dates": "Dec 2025 – Jan 2026",
     "location": "Xi’an, China",
     "bullets": [
@@ -84,7 +84,7 @@ export const experience = [
   {
     "company": "Chongqing Jingkai Trading Co., Ltd.",
     "descriptor": "B2C Cross-Border E-commerce Company",
-    "role": "Full-stack Software Development Intern",
+    "role": "Backend Engineer Intern",
     "dates": "May 2024 – Aug 2024",
     "location": "Chongqing, China",
     "bullets": [
