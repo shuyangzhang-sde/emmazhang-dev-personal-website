@@ -34,7 +34,7 @@ export const experience = [
     "company": "GlobiFYE",
     "companyUrl": "https://www.linkedin.com/company/globifye/posts/",
     "descriptor": "B2B Business Services Outsourcing",
-    "role": "AI Engineer Intern",
+    "role": "Software Development Intern",
     "dates": "May 2026 – Sep 2026",
     "location": "Atlanta, GA · Remote",
     "bullets": [
@@ -59,7 +59,7 @@ export const experience = [
   {
     "company": "Tang Matcha House",
     "descriptor": "Matcha café ordering platform",
-    "role": "Software Development Intern",
+    "role": "Full-Stack Software Engineer",
     "dates": "Dec 2025 – Jan 2026",
     "location": "Xi’an, China",
     "bullets": [
